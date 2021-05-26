@@ -1,18 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// const React = require('react'); 
-// const ReactDOM = require('react-dom'); 
-
-// ReactDOM.render(what to render, where to render it)
+import MyApp from "./MyApp"
 
 ReactDOM.render(
-    <div>
-        <h1>Hello World!</h1>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
-    </div>,
-  document.getElementById("root")); 
+    <MyApp />,    // Create an instance of the MyApp function
+    document.getElementById("root")); 
