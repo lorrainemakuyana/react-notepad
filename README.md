@@ -57,6 +57,37 @@ still, different smaller components that will be imported using that file. That 
      ); 
 ```
 
+### Mapping Components 
+The data that is passed in is usually put in a different file, e.g. a js file or a json file or in an API somewhere. If data is is an array, you can take advantage of advanced array methods such as map, filter, some etc. to help in constructing components. For example: ]
+
+```
+    // in the Joke.js file 
+    const Joke = (props) => 
+    <div>
+        <h3>Question: {props.question} </h3>
+        <h3>Answer: {props.punchLine} </h3>
+        <hr />
+    </div>
+
+    // In the App.js file 
+    // import rules
+    import jokesData from "./jokesData"
+
+    function App() {
+
+        const jokeComponents = jokesData.map((data) => {
+            return <Joke key={data.id} question={data.question} punchLine={data.punchLine} />
+        })
+        return (
+            <div>
+                {jokeComponents}
+            </div>
+        )
+    }
+export default App
+```
+The joke components will be rendered with the each value of the jokeComponents array as a separate component. This file assumes that the array of jokes is contained in the jokesData array in a separate JS file in same root folder. 
+
 ### Styling in React 
 An external stylesheet can be used wih styles, and referenced from the index.html file. 
 However, styles withing the different JavaScript components are also applied, but usually as JavaScript objects. Here is an example 
@@ -112,3 +143,57 @@ The same can be done by having the styles in an external CSS file, say index.css
 ```
 
 ### React Props
+Props help modify the way that components work.
+Props are passed in as function parameters that can then be accessed by object dot operations. This reduces the need to create different instances of the same component with different properties. For example, for a contact list with properties name, image, phone and email per user, the props object helps to create different user properties for each contact given the properties are passed in as attributes to the Contact Component. Here's how:
+
+```
+    // In App.js 
+    // import rules here 
+
+    const App = () =>
+        <div className="contacts">
+            <ContactCard 
+                name="Mr. Whiskerson" 
+                imgUrl="http://placekitten.com/300/200" 
+                phone="(212) 555-1234" 
+                email="mr.whiskaz@catnap.meow"
+            />
+        </div>
+        
+    // In ContactCard.js 
+    const ContactCard = (props) => 
+        <div className="contact-card">
+            <img src={props.imgUrl} alt=""/>
+            <h3>{props.name}</h3>
+            <p>Phone: {props.phone}</p>
+            <p>Email: {props.email}</p>
+        </div>
+
+```
+Here, the props, passed in as a function parameter is actually an object containing all the attributes of the contact card component. The props object properties can be accessed using dot notation as shown, with the parenthesis being a conversion between JS and JSX. 
+
+The same can be implemented using objects only, without using attributed in the App.js function. This is how: 
+
+```
+    // In App.js 
+    // import rules here 
+
+    const App = () =>
+        <div className="contacts">
+            <ContactCard 
+            contact={{name: "Mr. Whiskerson", imgUrl: "http://placekitten.com/300/200", phone: "(212) 555-1234", email: "mr.whiskaz@catnap.meow"}}
+            />
+        </div>
+
+    // In ContactCard.js 
+    const ContactCard = (props) => 
+        <div className="contact-card">
+            <img src={props.contact.imgUrl}/>
+            <h3>{props.contact.name}</h3>
+            <p>Phone: {props.contact.phone}</p>
+            <p>Email: {props.contact.email}</p>
+        </div>
+``` 
+The latter is best suited for when the values of the objects are acquired from a data file e.g. a JSON file that can be accessed using JavaScript.
+
+If there are no props, or if the props is empty, then the props is null and nothing shows. This is an advantage especially when there is an undefined or null value , there won't be an error. 

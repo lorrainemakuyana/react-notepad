@@ -1,19 +1,19 @@
-import React from 'react';
+import React from "react"
 
-function MyApp() {              // create a function that returns the HTML to be rendered
-    const firstName = "Lorraine"
-    const lastName = "Makuyana"
+import Joke from "./Joke"
+import jokesData from "./jokesData"
+
+function App() {
+
+    const jokeComponents = jokesData.map((data) => {
+        return <Joke key={data.id} question={data.question} punchLine={data.punchLine} />
+    })
 
     return (
         <div>
-            <h1>Hello {`${firstName} ${lastName}`}</h1>
-            <ul>
-                <li>Learning</li>
-                <li>REACT</li>
-                <li>Is Fun!!!</li>
-            </ul>
+            {jokeComponents}
         </div>
     )
 }
 
-export default MyApp
+export default App
