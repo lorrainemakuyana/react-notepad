@@ -1,17 +1,17 @@
 import React from 'react';
 
-import Footer from "./Footer"
-
 function MyApp() {              // create a function that returns the HTML to be rendered
+    const firstName = "Lorraine"
+    const lastName = "Makuyana"
+
     return (
         <div>
-            <h1>Hello World!</h1>
+            <h1>Hello {`${firstName} ${lastName}`}</h1>
             <ul>
                 <li>Learning</li>
                 <li>REACT</li>
                 <li>Is Fun!!!</li>
             </ul>
-            <Footer />
         </div>
     )
 }
