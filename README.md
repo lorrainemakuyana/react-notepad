@@ -1,6 +1,6 @@
-# Learning React
+# React 101
 
-This is a repository I am using to learn React.
+This is a repository I am using to learn React. Below are the many things I have learned. I will continue to update this repo as I continue with my learning. 
 
 ### React Components 
 Components in React reduce clumsiness and redundancy when using the render() method. 
