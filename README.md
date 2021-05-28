@@ -2,7 +2,7 @@
 
 This is a repository I am using to learn React. Below are the many things I have learned. I will continue to update this repo as I continue with my learning. 
 
-### React Components 
+## React Functional Components 
 Components in React reduce clumsiness and redundancy when using the render() method. 
 For example: 
 Say there is a file index.js with the following code:
@@ -88,7 +88,7 @@ export default App
 ```
 The joke components will be rendered with the each value of the jokeComponents array as a separate component. This file assumes that the array of jokes is contained in the jokesData array in a separate JS file in same root folder. 
 
-### Styling in React 
+### Styling Components 
 An external stylesheet can be used wih styles, and referenced from the index.html file. 
 However, styles withing the different JavaScript components are also applied, but usually as JavaScript objects. Here is an example 
 
@@ -142,8 +142,8 @@ The same can be done by having the styles in an external CSS file, say index.css
     }
 ```
 
-### React Props
-Props help modify the way that components work.
+## React Props
+Props help modify the way that components work. Props cannot be changed by the receiving component.
 Props are passed in as function parameters that can then be accessed by object dot operations. This reduces the need to create different instances of the same component with different properties. For example, for a contact list with properties name, image, phone and email per user, the props object helps to create different user properties for each contact given the properties are passed in as attributes to the Contact Component. Here's how:
 
 ```
@@ -197,3 +197,63 @@ The same can be implemented using objects only, without using attributed in the 
 The latter is best suited for when the values of the objects are acquired from a data file e.g. a JSON file that can be accessed using JavaScript.
 
 If there are no props, or if the props is empty, then the props is null and nothing shows. This is an advantage especially when there is an undefined or null value , there won't be an error. 
+<<<<<<< HEAD
+
+## React Class Components 
+
+### Converting between functional and class components
+```
+    function App(props) {
+        return (
+            <div>
+                <h1>{props.item}</h1>
+            </div>
+        )
+    }
+
+    // The above is the same as:
+    class App extends React.Component {
+        anotherMethod() {
+            // Code=block
+        }
+
+        render() {
+            const a = this.anothermethod();
+            return (
+                <div>
+                    <h1>{this.props.item}</h1>
+                </div>
+            )
+        }
+    }
+```
+
+### State 
+Requirements 
+* Component should be class-based 
+* Contructor function should be available
+
+```
+    class App extends React.Component {
+        constructor() {
+            super(); 
+            this.state = {
+                name: "Wendy",
+                age: 25,
+                answer: "No"
+            }
+        }
+        render() {
+            return (
+                <div>
+                    <h1>Her name is {this.state.name}</h1>
+                    <ChildComponent answer={this.state.answer}/>
+                    
+                </div>
+                
+            )
+        }
+```
+In the abpve example, the state "answer" has been passed down to the ChildComponent. If the setState() method is used to change the state, all child components that are using parts of that state are automatically updated to reflect the change.
+
+
