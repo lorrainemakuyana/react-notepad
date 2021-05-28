@@ -1,6 +1,6 @@
-# Learning React
+# React 101
 
-This is a repository I am using to learn React.
+This is a repository I am using to learn React. Below are the many things I have learned. I will continue to update this repo as I continue with my learning. 
 
 ## React Functional Components 
 Components in React reduce clumsiness and redundancy when using the render() method. 
@@ -254,3 +254,5 @@ Requirements
         }
 ```
 In the abpve example, the state "answer" has been passed down to the ChildComponent. If the setState() method is used to change the state, all child components that are using parts of that state are automatically updated to reflect the change.
+
+
