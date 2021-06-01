@@ -253,6 +253,59 @@ Requirements
             )
         }
 ```
-In the abpve example, the state "answer" has been passed down to the ChildComponent. If the setState() method is used to change the state, all child components that are using parts of that state are automatically updated to reflect the change.
+In the above example, the state "answer" has been passed down to the ChildComponent. If the setState() method is used to change the state, all child components that are using parts of that state are automatically updated to reflect the change.
+
+#### Changing state 
+Changing state implies changing the original state object in the constructor. However, this is not usually done because it changes the global variable. Hence, the setState method is used for the function. The method to change the state is bonded to the class component.  
+```
+    import React from "react"
+
+    class App extends React.Component {
+        constructor() {
+            super()
+            this.state = {
+                count: 0
+            }
+            this.handleClick = this.handleClick.bind(this) // binding the method
+        }
+        
+        handleClick() {
+            this.setState((prevState) => { 
+                return {
+                    count: prevState.count + 1; 
+                }
+            })
+        }
+        
+        render() {
+            return (
+                <div>
+                    <h1>{this.state.count}</h1>  // receives and re-renders every time that the count changes.
+                    <button onClick={this.handleClick}>Change!</button>
+                    <ChildComponent count={this.state.count}> //reflects the new value of count as it changes.
+                </div>
+            )
+        }
+    }
+```
+
+
+## Handling events 
+All event handlers are in JS version. The function is passed in to the event using parenthesis. 
+i.e. 
+```
+    <button onClick="myFunction">Click Here</button>
+```
+
+In React, this even is tracked as 
+```
+    <button onClick={functionName}>Click Here</button>
+```
+
+The function can also be an anonymous or arrow function wrapped in parenthesis, for example 
+```
+    <button onClick={() => console.log("Button Clicked!")}>Click Here</button>
+```
+
 
 
