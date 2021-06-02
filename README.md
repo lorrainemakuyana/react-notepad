@@ -2,7 +2,7 @@
 
 This is a repository I am using to learn React. Below are the many things I have learned. I will continue to update this repo as I continue with my learning. 
 
-## React Functional Components 
+## Functional Components 
 Components in React reduce clumsiness and redundancy when using the render() method. 
 For example: 
 Say there is a file index.js with the following code:
@@ -142,7 +142,7 @@ The same can be done by having the styles in an external CSS file, say index.css
     }
 ```
 
-## React Props
+## Props
 Props help modify the way that components work. Props cannot be changed by the receiving component.
 Props are passed in as function parameters that can then be accessed by object dot operations. This reduces the need to create different instances of the same component with different properties. For example, for a contact list with properties name, image, phone and email per user, the props object helps to create different user properties for each contact given the properties are passed in as attributes to the Contact Component. Here's how:
 
@@ -198,7 +198,7 @@ The latter is best suited for when the values of the objects are acquired from a
 
 If there are no props, or if the props is empty, then the props is null and nothing shows. This is an advantage especially when there is an undefined or null value , there won't be an error. 
 
-## React Class Components 
+## Class Components 
 
 ### Converting between functional and class components
 ```
@@ -227,7 +227,7 @@ If there are no props, or if the props is empty, then the props is null and noth
     }
 ```
 
-### State 
+## State 
 Requirements 
 * Component should be class-based 
 * Contructor function should be available
