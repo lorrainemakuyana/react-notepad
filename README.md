@@ -368,4 +368,46 @@ getSnapshotBeforeUpdate() {
 }
 ```
 
+## Conditional Rendering 
+Load something on the screen if a condition is met. Usually, the main file, App.js determines what should be rendered and the call to the child Conditional component is called only when the file is supposed to render.
+```
+function Conditional(props) {
+    if(condition for rendering) {
+        return (
+
+        )
+    } 
+    return (
+        // HTML element
+    )
+}
+```
+
+In the render method of the App.js method, the same can be executed more efficiently, with the Conditional child component only rendering as and when the condition is met.
+```
+render() {
+    return (
+        <div>
+            {this.state.isLoading ?
+            <h1>Loading...</h1> :
+            <Conditional />}
+        </div>
+    )
+    }
+```
+
+The JS && operator can be used to execute conditional rendering since the truth of the first statement is found out first before the second and if it doesn't evaluate to true, nothing is rendered onto the screen.
+```
+render() {
+        return (
+            <div>
+                {
+                    this.state.unreadMessages.length > 0 && 
+                    <h2>You have {this.state.unreadMessages.length} unread messages!</h2>
+                }
+            </div>
+        )
+    }
+``` 
+
 

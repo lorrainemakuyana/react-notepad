@@ -1,8 +1,8 @@
 import React from "react"
 
-import Joke from "./Joke"
-import jokesData from "./jokesData"
-import randomColor from "randomcolor"
+// import Joke from "./Joke"
+// import jokesData from "./jokesData"
+// import randomColor from "randomcolor"
 
 /* function App() {
 
@@ -17,7 +17,7 @@ import randomColor from "randomcolor"
     )
 } */
 
-class App extends React.Component {
+/* class App extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -36,7 +36,7 @@ class App extends React.Component {
     }
     
     componentDidUpdate() {
-        const newColor = randomcolor()
+        const newColor = randomColor()
         this.setState({color: newColor})
     }
     
@@ -47,6 +47,36 @@ class App extends React.Component {
                 <button onClick={this.increment}>
                     Increment!
                 </button>
+            </div>
+        )
+    }
+} */
+
+class App extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            isLoggedIn: true
+        }
+    }
+    
+    onClick() {
+        this.setState(prevState => {
+        return {
+            ...prevState, 
+            isLoggedIn: !prevState.isLoggedIn
+        }
+                
+        })
+    }
+    
+    render() {
+        const clicked = this.onClick.bind(this)
+        
+        return (
+            <div>
+                {this.state.isLoggedIn ? <h1>You are currently logged in</h1> : <h1>You are currently logged out </h1>}
+                <button onClick={clicked}>{this.state.isLoggedIn ? "Logout" : "Login" }</button>
             </div>
         )
     }
