@@ -255,7 +255,7 @@ Requirements
 ```
 In the above example, the state "answer" has been passed down to the ChildComponent. If the setState() method is used to change the state, all child components that are using parts of that state are automatically updated to reflect the change.
 
-#### Changing state 
+### Changing state 
 Changing state implies changing the original state object in the constructor. However, this is not usually done because it changes the global variable. Hence, the setState method is used for the function. The method to change the state is bonded to the class component.  
 ```
     import React from "react"
@@ -307,5 +307,65 @@ The function can also be an anonymous or arrow function wrapped in parenthesis, 
     <button onClick={() => console.log("Button Clicked!")}>Click Here</button>
 ```
 
+## Lifecycle Methods
+The render() method is an example of a lifecycle method. 
+```
+render() {
+        return (
+            <div>
+                Code goes here
+            </div>
+        )
+    }
+```
+
+#### componentDidMount() 
+
+This method is run only once when the component is mount on the screen. The method is commonly used for API calls to get data from an externall source. 
+```
+componentDidMount() {
+
+}
+```
+
+#### shouldComponentUpdate
+This method decides whether the component should rerender or not, usually react re-renders the component without any logic. This method gives the developer the chance to give the logic whether or not the component should update. It receives nextProps and nextState as parameters. It returns a Boolean value true or false indicating whether or not the component should update.
+```
+shouldComponentUpdate(nextProps, nextState) {
+
+}
+```
+
+#### componentDidUpdate
+Requires a more complex application setup. The method is called after the render method when the component is changed. The setState method cannot be put inside this method since the updates happen inside the function. This leads to an infinite loop, hence the method should set the state only when certain conditions are met, not always. The parameters are optional for this method. 
+```
+componentDidUpdate(prevProps, prevState) {
+
+}
+```
+
+#### componentWillUnmount 
+Used when cleaning up or tear down anything set up that can potentially lead to clutter in the application or in the DOM before the component disappears. The method does not receive any parameters. Example is removing event listeners.
+```
+componentWillUnmount() {
+
+}
+```
+
+#### getDerivedStateFromProps
+Rare cases when the component needs to take incoming props and set the state based on the props received from the parent. It returns the new updates state based on the props. There is always a better way to go about getting derived state from props and it is discouraged to use the method. 
+```
+static getDerivedStateFromProps(props, state) {
+    
+}
+```
+
+#### getSnapshotBeforeUpdate
+Helps to create a backup of the current state of the component. Saving some date for example, stored in an object. The object is the snapshot of the current state of things in the application. 
+```
+getSnapshotBeforeUpdate() {
+
+}
+```
 
 
