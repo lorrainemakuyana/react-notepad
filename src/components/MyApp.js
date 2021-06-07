@@ -50,7 +50,7 @@ import React from "react"
             </div>
         )
     }
-} */
+} 
 
 class App extends React.Component {
     constructor() {
@@ -77,6 +77,40 @@ class App extends React.Component {
             <div>
                 {this.state.isLoggedIn ? <h1>You are currently logged in</h1> : <h1>You are currently logged out </h1>}
                 <button onClick={clicked}>{this.state.isLoggedIn ? "Logout" : "Login" }</button>
+            </div>
+        )
+    }
+} */ 
+
+class App extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            loading: false,
+            character: {
+
+            }
+        }
+    }
+    
+    componentDidMount() {
+        this.setState({
+            loading: true
+        })
+        fetch("https://swapi.dev/api/people/1/")
+            .then(response => response.json())
+            .then(data => {
+                this.setState({
+                    character: data, 
+                    loading: false
+                })
+            })
+    }
+    
+    render() {
+        return (
+            <div>
+                {this.state.loading ? "Loading..." : this.state.character.name}
             </div>
         )
     }

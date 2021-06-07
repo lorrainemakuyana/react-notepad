@@ -321,7 +321,7 @@ render() {
 
 #### componentDidMount() 
 
-This method is run only once when the component is mount on the screen. The method is commonly used for API calls to get data from an externall source. 
+This method is run only once when the component is mount on the screen. The method is commonly used for API calls to get data from an externall source.It allows to run code immediately the component is mount onto the screen.
 ```
 componentDidMount() {
 
@@ -410,4 +410,17 @@ render() {
     }
 ``` 
 
+## Fetching data from an API
 
+#### fetch 
+Promise-based way to perform HTTP requests. It is usually called inside the componentDidMount function. This is done for API calls to get data from an external API.
+
+```
+componentDidMount() {
+    fetch("https://swapi.dev/api/people/1/")
+        .then(response => response.json()) // turns the data into an object
+        .then(data => console.log(data))
+    }
+```
+
+## React Forms
