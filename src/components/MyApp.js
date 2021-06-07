@@ -106,7 +106,7 @@ class App extends React.Component {
                 })
             })
     }
-    
+    /*
     render() {
         return (
             <div>
@@ -114,6 +114,19 @@ class App extends React.Component {
             </div>
         )
     }
+    */
+
+    handleChange() {
+        this.setState()
+    } 
+
+    render() {
+        return (
+           <form>
+               <input type="text" placeholder="First Name" onChange={this.handleChange} />
+           </form>
+       )
+   }
 }
 
 export default App

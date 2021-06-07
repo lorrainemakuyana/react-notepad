@@ -424,3 +424,6 @@ componentDidMount() {
 ```
 
 ## React Forms
+The form fields amd values are tracked using <code>state()</code>. The <code>setState()</code> method is used to then keep track of the form fields and the user inputs on every keystroke. The convvenience comes with having a JS function that handled the submission of the forms and has access to the data that the user entered into the form. This is achieved with a technique called **Controlled Components** 
+
+#### Controlled Components
