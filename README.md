@@ -424,6 +424,67 @@ componentDidMount() {
 ```
 
 ## React Forms
-The form fields amd values are tracked using <code>state()</code>. The <code>setState()</code> method is used to then keep track of the form fields and the user inputs on every keystroke. The convvenience comes with having a JS function that handled the submission of the forms and has access to the data that the user entered into the form. This is achieved with a technique called **Controlled Components** 
+The form fields amd values are tracked using <code>state()</code>. The <code>setState()</code> method is used to then keep track of the form fields and the user inputs on every keystroke. The convenience comes with having a JS function that handled the submission of the forms and has access to the data that the user entered into the form. This is achieved with a technique called *Controlled Components*
 
 #### Controlled Components
+Form elements in React typically maintain their own state and update it based on user input. Mutable state in React is kept in the state property of components and can only be updated with the <code>setState()</code> method. If the two are cmbined such that the React state is the single source of truth and the component that renders a form also renders controls what happens in that form on subsequent user input, then the input form element whose value is controlled by React in this way is called a "controlled component." With controlled components, the input's vlue is always driven by the React state, hence can be passed in to other UI elements or reset it. 
+
+An example of a controlled element: 
+```
+class NameForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {value: ''};
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
+
+    handleSubmit(event) {
+        alert('A name was submitted: ' + this.state.value);
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                Name:
+                <input type="text" value={this.state.value} onChange={this.handleChange} />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+        );
+    }
+}
+```
+
+To handle multiple controlled <code>input</code> elements, add a <code>name</code> attribute to each element and let the handler function choose what to do based on the value of <code>event.target.name</code>. In this case, the <code>handleChange</code> function only one and handles all the changes in the form. This removes the clumsiness and tediousness of having many functions that handle the changes for each keystroke.
+
+For controlled components, it is sometimes tedious to write event handlers for every way the data can change and pipe all of the input state through a React component, or when converting a preexisting codebase to React or integrating a React application with a non-React library. In this case, use uncontrolled components. 
+
+####  Uncontrolled components 
+Instead of having an event handler for every state update, you can used a ref to get form values from the DOM. Unlike the source of truth in the controlled components, here the source of truth is kept in the DOM. In the rendering lifecycle, the <code>value</code> attribute on form elements will override the value in the DOM. Often, you then need to specify the initial value but leave subsequent updates uncontrolled. Hence, you specify a <code>defaultValue</code> attribute instead of <code>value</code>. With this, changing <code>defaultValue</code> attribute after a component has mounted will not cause any update of the value in the DOM.
+
+``` 
+render() {
+    return (
+        <form onSubmit={this.handleSubmit}>
+            <label>
+                Name:
+                <input
+                defaultValue="Bob"
+                type="text"
+                ref={this.input} />
+            </label>
+            <input type="submit" value="Submit" />
+        </form>
+    );
+}
+```
+You can install the <code>Formik</code> React library for React Forms. 
+For form submissions, the <code>onSubmit()</code> handler should be its own function that handles the oNSUbmit event of the form.
