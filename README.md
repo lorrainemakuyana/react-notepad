@@ -1,6 +1,11 @@
 # React 101
 
-This is a repository I am using to learn React. Below are the many things I have learned. I will continue to update this repo as I continue with my learning. 
+#### Now that I have completed the Learn React Course
+Hello, and I am super excited to have completed my learn React course. From learning about props, components, hooks, lifecycle methods and more, including building a to do application and a meme generator in React, I have some information about React and I am excited to start using the framework. Below are some of the concepts I learned and a link to the projects I created during the course. I was updating these notes throughout my learning, hoping it would be a learning resource for some as well. In the projects folder of the code in this course, you will find all the project code too. 
+
+Special thanks to my internship supervisor at CYST who gave me this interactive React learning path for free! 
+Here's the link to the course on Scrimba: https://scrimba.com/learn/learnreact
+
 
 ## Functional Components 
 Components in React reduce clumsiness and redundancy when using the render() method. 
