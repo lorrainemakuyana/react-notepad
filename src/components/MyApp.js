@@ -1,4 +1,5 @@
-import React from "react"
+// import React from "react"
+import Form from "./FormContainer"
 
 // import Joke from "./Joke"
 // import jokesData from "./jokesData"
@@ -80,7 +81,7 @@ class App extends React.Component {
             </div>
         )
     }
-} */ 
+} 
 
 class App extends React.Component {
     constructor() {
@@ -114,7 +115,7 @@ class App extends React.Component {
             </div>
         )
     }
-    */
+    
 
     handleChange() {
         this.setState()
@@ -127,6 +128,45 @@ class App extends React.Component {
            </form>
        )
    }
+} 
+
+class App extends React.Component {
+    
+    render() {
+        return (
+            <Form />
+                
+        )
+    }
 }
 
 export default App
+*/
+
+import React, {useState, useEffect} from "react"
+import randomColor from "randomcolor"
+
+function App() {
+    const [count, setCount] = useState(0)
+    const [color, setColor] = useState("")
+    
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCount(prevCount => prevCount + 1)
+        }, 1000)
+        return () => clearInterval(intervalId)
+    }, [])
+    
+    useEffect(() => {
+        setColor(randomColor())
+    }, [count])
+    
+    return (
+        <div>
+            <h1 style={{color: color}}>{count}</h1>
+        </div>
+    )
+}
+
+export default App
+

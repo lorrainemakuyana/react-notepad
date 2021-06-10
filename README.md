@@ -488,3 +488,154 @@ render() {
 ```
 You can install the <code>Formik</code> React library for React Forms. 
 For form submissions, the <code>onSubmit()</code> handler should be its own function that handles the oNSUbmit event of the form.
+
+## React Container and Component Architecture
+Always separate the business logic and the presentation logic from each other into a Container and a Component. The Container handles the changes and what happens when there is an event and the component handles the presentation logic, the actual rendering of the component. Usually, these forms are separated into the following, for example to render a form component, you will have <code>FormContainer.js</code> and <code>FormComponent.js</code>
+
+## Modern React Apps 
+Changes 
+* Methods can be created using arrow functions. Methods are nolonger required to be bound to the constructor function. 
+* Ability to create class variables outside the constructor
+For example 
+```
+class App extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+
+        }
+    }
+}
+```
+will be the same as, but in a cleaner way of implementation 
+
+```
+class App extends React.Component {
+    state = {
+        
+    }
+    
+    // other methods
+}
+```
+
+## React Hooks 
+Are ways to "hook" into state and lifecycle methods of components using only functional components. They allow users to stick to using functional components only and improve code readability.
+
+#### useState() Hook 
+Whatever is passed into the <code>useState()</code> function is the initial value of the state. The useState() hook returns an array because it is expected to use array destructuring to access the values in the arrays. 
+
+```
+import React, { useState } from "react"
+
+function App() {
+
+    const [ value ] = useState()    // value is now an array. Use indexing to access data.
+
+    return (
+        <div>
+            <h1>React State with functional Components - the useState() hook. Are you learning? { value }</h1>
+        </div>
+    )
+}
+```
+To change the state, the array destructuring has to have the <code>setState()</code> method to change the state. 
+
+```
+import React, {useState} from "react"
+
+function App() {
+    const [count, setCount] = useState(0)
+    
+    function increment() {
+        setCount(prevCount => prevCount + 1)
+    }
+
+    function decrement() {
+        setCount(prevCount => prevCount - 1)
+    }
+    
+    return (
+        <div>
+            <h1>{count}</h1>
+            <button onClick={increment}>Increment</button>
+            <button onClick={decrement}>Increment</button>
+        </div>
+    )
+}
+```
+
+#### useEffect() Hook 
+Hooks into a component's lifecycle method with a functional component. It is considered a replacement for 3 lifecycle methods: 
+* componentDidMount
+* componentDidUpdate
+* componentWillUnmount
+
+It allows to produce "sideeffects" in the component, which is something that reaches outside the component to perform its action, e.g network requests, manual DOM manipulatuon, manual event listeners or timeouts and intervals. The useState() function comes from the react library. It takes a callback function for the first parameter, and an array to specify the variable to watch for changes in and the function will run only when the variable is changed. This array can have multiple values. If the array is empty, then the component is mounted only once and is not run again.
+```
+import React, {useState, useEffect} from "react"
+
+function App() {
+
+    useEffect(() => {
+        setColor(randomcolor())
+    }, [count]
+    )
+}
+```
+The same is done using the code below and every time the component is updated. 
+
+```
+import React, {useState, useEffect} from "react"
+
+function App() {
+
+    const [color, setColor] = useState(randomColor())
+    
+}
+```
+
+The above are examples of times when the components automatically unmount when the browser tab is closed or the browser itself is closed. However, for those situations that use, say the <code>setInterval()</code> function which performs an action after a set amount of time, the component continues to tun in the background even after the browser is closed. The useEffect() hook can be used to unmount these components. 
+```
+import React, {useState, useEffect} from "react"
+import randomcolor from "randomcolor"
+
+function App() {
+    
+    useEffect(() => {
+        setInterval(() => {
+            setCount(prevCount => prevCount + 1)
+        }, 1000)
+    }, [])  // used as component did mount
+        
+    useEffect(() => {
+        setColor(randomcolor())
+    }, [count])  // used as component did update
+
+``` 
+To end the interval, we need to get the id from the setInterval function and pass the is to the clearInterval() function so that it unmounts the interval.
+
+```
+useEffect(() => {
+    const intervalId = setInterval(() => {
+        setCount(prevCount => prevCount + 1)
+    }, 1000)
+    return () => clearInterval(intervalId)   // used as component will unmount
+}, [])
+``` 
+
+## Resources 
+Here are some great resources to check out
+ * Other modern/advanced React features/topics to learn:
+ * Official React Context API - https://reactjs.org/docs/context.html
+ * Error Boundaries - https://reactjs.org/docs/error-boundaries.html
+ * Render props - https://reactjs.org/docs/render-props.html
+ * Higher Order Components - https://reactjs.org/docs/higher-order-components.html
+ * React Router - https://reacttraining.com/react-router/core/guides/philosophy
+ * React Hooks - https://reactjs.org/docs/hooks-intro.html
+ * React lazy, memo, and Suspense - https://reactjs.org/blog/2018/10/23/react-v-16-6.html
+ * https://medium.freecodecamp.org/every-time-you-build-a-to-do-list-app-a-puppy-dies-505b54637a5d
+ * https://medium.freecodecamp.org/want-to-build-something-fun-heres-a-list-of-sample-web-app-ideas-b991bce0ed9a
+ * https://medium.freecodecamp.org/summer-is-over-you-should-be-coding-heres-yet-another-list-of-exciting-ideas-to-build-a95d7704d36d
+
+
