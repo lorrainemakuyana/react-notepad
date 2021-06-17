@@ -1,15 +1,14 @@
 # React 101
 
 #### Now that I have completed the Learn React Course
-Hello, and I am super excited to have completed my learn React course. From learning about props, components, hooks, lifecycle methods and more, including building a to do application and a meme generator in React, I have some information about React and I am excited to start using the framework. Below are some of the concepts I learned and a link to the projects I created during the course. I was updating these notes throughout my learning, hoping it would be a learning resource for some as well. In the projects folder of the code in this course, you will find all the project code too. 
+Hello, and I am super excited to have completed my learn React course. From learning about props, components, hooks, lifecycle methods and more, including building a to-do application and a meme generator in React, I have some information about React and I am excited to start using the framework. Below are some of the concepts I learned and a link to the projects I created during the course. I was updating these notes throughout my learning, hoping it would be a learning resource for some as well. In the projects folder of the code in this course, you will find all the project code too. 
 
 #### Links to project repositories
-To do Application: https://github.com/lorrainemakuyana/todo-app-react
-Meme Generator: https://github.com/lorrainemakuyana/react-meme-generator
+* To do Application: https://github.com/lorrainemakuyana/todo-app-react
+* Meme Generator: https://github.com/lorrainemakuyana/react-meme-generator
 
-Special thanks to my internship supervisor at CYST who gave me this interactive React learning path for free! 
+Special thanks to my internship supervisor at CYST who gave me this interactive React learning path to use to learn with. 
 Here's the link to the course on Scrimba: https://scrimba.com/learn/learnreact
-
 
 ## Functional Components 
 Components in React reduce clumsiness and redundancy when using the render() method. 
@@ -34,7 +33,7 @@ Say there is a file index.js with the following code:
     )  
 ```
 
-This is acceptable, for any big file as long as all the HTML elements are wrapped within one parent element. However, imagine 
+This is acceptable, for any file as long as all the HTML elements are wrapped within one parent element. However, imagine 
 a case where you want to render a full webpage. In this case, it is better to have a component, say App.js that holds the page, or better 
 still, different smaller components that will be imported using that file. That way, the webpage will end up looking like a tree object in which components import each other, but the very basic element in all of them are the HTML elements. 
 
@@ -67,7 +66,7 @@ still, different smaller components that will be imported using that file. That 
 ```
 
 ### Mapping Components 
-The data that is passed in is usually put in a different file, e.g. a js file or a json file or in an API somewhere. If data is is an array, you can take advantage of advanced array methods such as map, filter, some etc. to help in constructing components. For example: ]
+The data that is passed in is usually put in a different file, e.g. a js file or a json file or in an API somewhere. If data is in an array, you can take advantage of advanced array methods such as map, filter, some etc. to help in constructing components. For example: 
 
 ```
     // in the Joke.js file 
@@ -79,11 +78,9 @@ The data that is passed in is usually put in a different file, e.g. a js file or
     </div>
 
     // In the App.js file 
-    // import rules
     import jokesData from "./jokesData"
 
     function App() {
-
         const jokeComponents = jokesData.map((data) => {
             return <Joke key={data.id} question={data.question} punchLine={data.punchLine} />
         })
@@ -95,11 +92,12 @@ The data that is passed in is usually put in a different file, e.g. a js file or
     }
 export default App
 ```
+
 The joke components will be rendered with the each value of the jokeComponents array as a separate component. This file assumes that the array of jokes is contained in the jokesData array in a separate JS file in same root folder. 
 
 ### Styling Components 
-An external stylesheet can be used wih styles, and referenced from the index.html file. 
-However, styles withing the different JavaScript components are also applied, but usually as JavaScript objects. Here is an example 
+An external stylesheet can be used with styles, and referenced from the index.html file. 
+However, styles within different JavaScript components are also applied, but usually as JavaScript objects. Here is an example 
 
 ```
     // This is a Header component 
@@ -126,12 +124,11 @@ However, styles withing the different JavaScript components are also applied, bu
     
 ```
 
-The same can be done by having the styles in an external CSS file, say index.css referenced from the index.html file, with the stylerule for the navbar class. This would work if the Header is assigned a className property. For example: 
+The same can be done by having the styles in an external CSS file, say index.css referenced from the index.html file, with the style rule for the navbar class. This would work if the Header is assigned a className property. For example: 
 
 ```
     // This is the Header component 
     // Import rules here 
-    
     const Header = () => 
         <header className="navbar">
             Hello World!
@@ -205,7 +202,7 @@ The same can be implemented using objects only, without using attributed in the 
 ``` 
 The latter is best suited for when the values of the objects are acquired from a data file e.g. a JSON file that can be accessed using JavaScript.
 
-If there are no props, or if the props is empty, then the props is null and nothing shows. This is an advantage especially when there is an undefined or null value , there won't be an error. 
+If there are no props, or if the props is empty, then the props is null and nothing shows. This is an advantage especially when there is an undefined or null value, there won't be an error. 
 
 ## Class Components 
 
@@ -239,7 +236,7 @@ If there are no props, or if the props is empty, then the props is null and noth
 ## State 
 Requirements 
 * Component should be class-based 
-* Contructor function should be available
+* Constructor function should be available
 
 ```
     class App extends React.Component {
@@ -256,9 +253,7 @@ Requirements
                 <div>
                     <h1>Her name is {this.state.name}</h1>
                     <ChildComponent answer={this.state.answer}/>
-                    
-                </div>
-                
+                </div> 
             )
         }
 ```
@@ -329,8 +324,7 @@ render() {
 ```
 
 #### componentDidMount() 
-
-This method is run only once when the component is mount on the screen. The method is commonly used for API calls to get data from an externall source.It allows to run code immediately the component is mount onto the screen.
+This method is run only once when the component is mount on the screen. The method is commonly used for API calls to get data from an external source.It allows to run code immediately the component is mount onto the screen.
 ```
 componentDidMount() {
 
@@ -338,7 +332,7 @@ componentDidMount() {
 ```
 
 #### shouldComponentUpdate
-This method decides whether the component should rerender or not, usually react re-renders the component without any logic. This method gives the developer the chance to give the logic whether or not the component should update. It receives nextProps and nextState as parameters. It returns a Boolean value true or false indicating whether or not the component should update.
+This method decides whether the component should re-render or not, usually react re-renders the component without any logic. This method gives the developer the chance to give the logic whether or not the component should update. It receives nextProps and nextState as parameters. It returns a Boolean value true or false indicating whether or not the component should update.
 ```
 shouldComponentUpdate(nextProps, nextState) {
 
@@ -354,7 +348,7 @@ componentDidUpdate(prevProps, prevState) {
 ```
 
 #### componentWillUnmount 
-Used when cleaning up or tear down anything set up that can potentially lead to clutter in the application or in the DOM before the component disappears. The method does not receive any parameters. Example is removing event listeners.
+Used when cleaning up or tearing down anything set up that can potentially lead to clutter in the application or in the DOM before the component disappears. The method does not receive any parameters. Example is removing event listeners.
 ```
 componentWillUnmount() {
 
@@ -436,7 +430,7 @@ componentDidMount() {
 The form fields amd values are tracked using <code>state()</code>. The <code>setState()</code> method is used to then keep track of the form fields and the user inputs on every keystroke. The convenience comes with having a JS function that handled the submission of the forms and has access to the data that the user entered into the form. This is achieved with a technique called *Controlled Components*
 
 #### Controlled Components
-Form elements in React typically maintain their own state and update it based on user input. Mutable state in React is kept in the state property of components and can only be updated with the <code>setState()</code> method. If the two are cmbined such that the React state is the single source of truth and the component that renders a form also renders controls what happens in that form on subsequent user input, then the input form element whose value is controlled by React in this way is called a "controlled component." With controlled components, the input's vlue is always driven by the React state, hence can be passed in to other UI elements or reset it. 
+Form elements in React typically maintain their own state and update it based on user input. Mutable state in React is kept in the state property of components and can only be updated with the <code>setState()</code> method. If the two are combined such that the React state is the single source of truth and the component that renders a form also renders/controls what happens in that form on subsequent user input, then the input form element whose value is controlled by React in this way is called a "controlled component." With controlled components, the input's value is always driven by the React state, hence can be passed in to other UI elements or reset. 
 
 An example of a controlled element: 
 ```
@@ -472,12 +466,12 @@ class NameForm extends React.Component {
 }
 ```
 
-To handle multiple controlled <code>input</code> elements, add a <code>name</code> attribute to each element and let the handler function choose what to do based on the value of <code>event.target.name</code>. In this case, the <code>handleChange</code> function only one and handles all the changes in the form. This removes the clumsiness and tediousness of having many functions that handle the changes for each keystroke.
+To handle multiple controlled <code>input</code> elements, add a <code>name</code> attribute to each element and let the handler function choose what to do based on the value of <code>event.target.name</code>. In this case, the <code>handleChange</code> function only handles all the changes in the form. This removes the clumsiness and tediousness of having many functions that handle the changes for each keystroke.
 
 For controlled components, it is sometimes tedious to write event handlers for every way the data can change and pipe all of the input state through a React component, or when converting a preexisting codebase to React or integrating a React application with a non-React library. In this case, use uncontrolled components. 
 
 ####  Uncontrolled components 
-Instead of having an event handler for every state update, you can used a ref to get form values from the DOM. Unlike the source of truth in the controlled components, here the source of truth is kept in the DOM. In the rendering lifecycle, the <code>value</code> attribute on form elements will override the value in the DOM. Often, you then need to specify the initial value but leave subsequent updates uncontrolled. Hence, you specify a <code>defaultValue</code> attribute instead of <code>value</code>. With this, changing <code>defaultValue</code> attribute after a component has mounted will not cause any update of the value in the DOM.
+Instead of having an event handler for every state update, you can used a <code>ref</code> to get form values from the DOM. Unlike the state source of truth in the controlled components, here the source of truth is kept in the DOM. In the rendering lifecycle, the <code>value</code> attribute on form elements will override the value in the DOM. Often, you then need to specify the initial value but leave subsequent updates uncontrolled. Hence, you specify a <code>defaultValue</code> attribute instead of <code>value</code>. With this, changing <code>defaultValue</code> attribute after a component has mounted will not cause any update of the value in the DOM.
 
 ``` 
 render() {
@@ -496,7 +490,7 @@ render() {
 }
 ```
 You can install the <code>Formik</code> React library for React Forms. 
-For form submissions, the <code>onSubmit()</code> handler should be its own function that handles the oNSUbmit event of the form.
+For form submissions, the <code>onSubmit()</code> handler should be its own function that handles the onSubmit event of the form.
 
 ## React Container and Component Architecture
 Always separate the business logic and the presentation logic from each other into a Container and a Component. The Container handles the changes and what happens when there is an event and the component handles the presentation logic, the actual rendering of the component. Usually, these forms are separated into the following, for example to render a form component, you will have <code>FormContainer.js</code> and <code>FormComponent.js</code>
@@ -532,7 +526,7 @@ class App extends React.Component {
 Are ways to "hook" into state and lifecycle methods of components using only functional components. They allow users to stick to using functional components only and improve code readability.
 
 #### useState() Hook 
-Whatever is passed into the <code>useState()</code> function is the initial value of the state. The useState() hook returns an array because it is expected to use array destructuring to access the values in the arrays. 
+Whatever is passed into the <code>useState()</code> function is the initial value of the state. The <code>useState()</code> hook returns an array because it is expected to use array destructuring to access the values in the arrays. 
 
 ```
 import React, { useState } from "react"
@@ -580,7 +574,7 @@ Hooks into a component's lifecycle method with a functional component. It is con
 * componentDidUpdate
 * componentWillUnmount
 
-It allows to produce "sideeffects" in the component, which is something that reaches outside the component to perform its action, e.g network requests, manual DOM manipulatuon, manual event listeners or timeouts and intervals. The useState() function comes from the react library. It takes a callback function for the first parameter, and an array to specify the variable to watch for changes in and the function will run only when the variable is changed. This array can have multiple values. If the array is empty, then the component is mounted only once and is not run again.
+It allows to produce "sideeffects" in the component, which is something that reaches outside the component to perform its action, e.g network requests, manual DOM manipulatuon, manual event listeners or timeouts and intervals. The useState() function comes from the react library. It takes a callback function for the first parameter, and an array to specify the variable to watch for changes in and the function will run only when the said variable is changed. This array can have multiple values. If the array is empty, then the component is mounted only once and is not run again.
 ```
 import React, {useState, useEffect} from "react"
 
@@ -604,7 +598,8 @@ function App() {
 }
 ```
 
-The above are examples of times when the components automatically unmount when the browser tab is closed or the browser itself is closed. However, for those situations that use, say the <code>setInterval()</code> function which performs an action after a set amount of time, the component continues to tun in the background even after the browser is closed. The useEffect() hook can be used to unmount these components. 
+The above are examples of times when the components automatically unmount when the browser tab is closed or the browser itself is closed. However, for those situations that use, say the <code>setInterval()</code> function which performs an action after a set amount of time, the component continues to run in the background even after the browser is closed. The useEffect() hook can be used to unmount these components. 
+
 ```
 import React, {useState, useEffect} from "react"
 import randomcolor from "randomcolor"
@@ -622,7 +617,7 @@ function App() {
     }, [count])  // used as component did update
 
 ``` 
-To end the interval, we need to get the id from the setInterval function and pass the is to the clearInterval() function so that it unmounts the interval.
+To end the interval, we need to get the <code>id</code> from the setInterval() function and pass it to the clearInterval() function so that it unmounts the interval.
 
 ```
 useEffect(() => {
@@ -646,5 +641,3 @@ Here are some great resources to check out
  * https://medium.freecodecamp.org/every-time-you-build-a-to-do-list-app-a-puppy-dies-505b54637a5d
  * https://medium.freecodecamp.org/want-to-build-something-fun-heres-a-list-of-sample-web-app-ideas-b991bce0ed9a
  * https://medium.freecodecamp.org/summer-is-over-you-should-be-coding-heres-yet-another-list-of-exciting-ideas-to-build-a95d7704d36d
-
-
