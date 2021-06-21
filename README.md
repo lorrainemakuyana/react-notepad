@@ -626,7 +626,10 @@ useEffect(() => {
     }, 1000)
     return () => clearInterval(intervalId)   // used as component will unmount
 }, [])
-``` 
+```
+
+### Custom Hooks 
+
 
 ## Resources 
 Here are some great resources to check out
