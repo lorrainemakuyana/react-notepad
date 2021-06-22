@@ -629,6 +629,83 @@ useEffect(() => {
 ```
 
 ### Custom Hooks 
+Custom hooks are JS functions whose names start with <code>use</code> and that function may call other hooks. Other hooks are called unconditionally at the top level of the custom hook. Unlike a React component a custom hook does not need to have a specific signature and we can decide what it takes as arguments and what it should return if anything. For example, for a hook that subscribes us to a newsletter for some website: 
+```
+function useNewsletter(newsletterID) {
+    const [ isSubscribed, setIsSubscribed ] = useState(null); 
+
+    // ....
+
+    return isSubscribed; 
+}
+```
+
+#### Using custom hooks 
+After extracting logic from functions into hooks, it can then be used in any other part of the code.
+```
+function Subscribe(props) {
+    const isSubscribed = useNewsletter(props.newsletter.id); 
+    return isSubscribed ? "Subscribed" : "Not Subscribed"; 
+}
+```
+
+Custom hooks are a convention that naturally follows from the design of hooks, rather than a React feature. Custom hooks should always start with <code>use</code>  so that it can automatically be checked for violations of rules of Hooks. 
+
+Two components using the same hooks do not share state. All state and effects inside og a custom hook are fully isolated, though cuatom hooks are a mechanism to reuse stateful logic. Each call to a hook gets isolated state, just like when it is possible to call <code>useState</code> and <code>useEffect</code> from the same component but they are completely independent. 
+
+Since hooks are functions, information can be passed between them, for example: 
+```
+const [newsletterID, setNewsletterID] = useState(1);
+const isSubscribed = useNewsletter(newsletterID);
+```
+
+Custom hooks offers the flexibility of sharing logic that wasn't possible in React components before, and can cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more. They are easy to use as React built-in features. Abstraction should not be done too early. Functional components can do more, and the average function component in the codebase becomes longer. Do not immediately use hooks but spot cases where a custom hook can hide complex logic behind a simple interface or help untangle a messy component. 
+
+For a complex componen that contains a lot of local state that is managed in an ad-hoc way, prefer to write it as a Reduc reducer because the <code>useState</code> does not make centralizing the update logic any easier. For example: 
+```
+function todosReducer(state, action) {
+  switch (action.type) {
+    case 'add':
+      return [...state, {
+        text: action.text,
+        completed: false
+      }];
+    // ... other actions ...
+    default:
+      return state;
+  }
+}
+``` 
+
+Reducers are very convenient tp est in isolation and scale to express complex update logic, and they can be broken down into smaller reducers too. You can also write a <code>useReducer</code> Hook to manage the local state of the component. For example: 
+```
+function useReducer(reducer, initialState) {
+  const [state, setState] = useState(initialState);
+
+  function dispatch(action) {
+    const nextState = reducer(state, action);
+    setState(nextState);
+  }
+
+  return [state, dispatch];
+}
+```
+It can be used in the functional component and then the reducer will drive its state management as:
+```
+function Todos() {
+  const [todos, dispatch] = useReducer(todosReducer, []);
+
+  function handleAddClick(text) {
+    dispatch({ type: 'add', text });
+  }
+
+  // ...
+}
+```
+
+
+
+
 
 
 ## Resources 
@@ -644,3 +721,4 @@ Here are some great resources to check out
  * https://medium.freecodecamp.org/every-time-you-build-a-to-do-list-app-a-puppy-dies-505b54637a5d
  * https://medium.freecodecamp.org/want-to-build-something-fun-heres-a-list-of-sample-web-app-ideas-b991bce0ed9a
  * https://medium.freecodecamp.org/summer-is-over-you-should-be-coding-heres-yet-another-list-of-exciting-ideas-to-build-a95d7704d36d
+ * https://reactjs.org/docs/hooks-custom.html
