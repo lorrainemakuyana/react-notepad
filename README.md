@@ -703,11 +703,6 @@ function Todos() {
 }
 ```
 
-
-
-
-
-
 ## Resources 
 Here are some great resources to check out
  * Other modern/advanced React features/topics to learn:
@@ -722,3 +717,4 @@ Here are some great resources to check out
  * https://medium.freecodecamp.org/want-to-build-something-fun-heres-a-list-of-sample-web-app-ideas-b991bce0ed9a
  * https://medium.freecodecamp.org/summer-is-over-you-should-be-coding-heres-yet-another-list-of-exciting-ideas-to-build-a95d7704d36d
  * https://reactjs.org/docs/hooks-custom.html
+ * https://www.freecodecamp.org/news/react-testing-library-tutorial-javascript-example-code/
