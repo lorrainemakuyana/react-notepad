@@ -703,6 +703,30 @@ function Todos() {
 }
 ```
 
+## React Testing 
+
+#### Testing presence of elements
+React applications are tested using the React Testing Library to test the actual DOM tree rendered by React on the browser. Apps created with the Create React App come bundled with this library already, and the library queries the DOM in the same way a user would. 
+
+The <code>App.test.js</code> file is used to do the testing. It virtually renders the component imported from the <code>App.js</code> file and appends it to the <code>document.body</code> node. This can be accessed using the screen object. The results from the <code>render()</code> call can be seen by using the <code>screen.debug()</code> method. 
+
+To run the tests, use <code>npm run test</code> and the <code>document.body</code> tree is rendered into the console. 
+
+Most React test cases should use methods for finding elements, and the testting library provides several of these by specific attributes: 
+* <code>getByText(textContent)</code>
+* <code>getByRole(role)</code>
+* <code>getByLabelText(label)</code>
+* <code>getPlaceholderText(placeholder)</code>
+* <code>getByAltText(alt)</code>
+* <code>getByDisplayValue(value)</code>
+* <code>getByTitle(title)</code>
+
+If the methods are enough, you can use the <code>getByTestId(data-testid)</code>.
+
+#### Testing user events 
+The <code>user-event</code> library for simulating user-browser interaction is also present in the library. 
+For example, for a click event, you can use the <code>userEvent.click()</code> method to assert whether or notthe button is working. You can also use other event methods like <code>dblClick()</code> for double clicking and element and <code>tyoe</code> for typing into a checkbox. 
+
 ## Resources 
 Here are some great resources to check out
  * Other modern/advanced React features/topics to learn:
