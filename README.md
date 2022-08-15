@@ -1002,9 +1002,9 @@ The action is dispatched to the store which will call the reducer for the event,
 
 
 # REACT NATIVE
-A framework for building native apps for iOS and Android using JavaScript. The app can be built in JavaScript and shared across platforms. There is a single codebase for both platforms.
+A framework for building native apps for iOS and Android using JavaScript. The app can be built in JavaScript and shared across platforms. There is a single codebase for both platforms. Apps are truly native, you don't need to know iOS or Android Development unless you need to interact directly with the native APIs of the platforms. There is no need for separate teams of engineers/developers to maintain two different codebases for the apps. Examples of apps built with React Native are: Facebook, Skype, Instagram, Pinterest, Uber Eats etc. 
 
-#### Advantages of React Native 
+### Advantages of React Native 
 * Single codebase
 * Increased developer productivity and faster time to market -> reloads are done very fast rather than in a native app where compilation is required before changes fire.
 
@@ -1012,10 +1012,10 @@ A framework for building native apps for iOS and Android using JavaScript. The a
 * React Native uses JavaScript (by Facebook), Flutter uses Dart (by Google)
 * React Native has a larger community  and quite more mature and stable, Flutter has a growing community and it not as mature as React Native. 
 * Explore both options to get more opportunities. 
-* 
 
-
-
+### Ways of building React Native Applications 
+* Expo - set of tools and framework that make it fast and easy to build react native apps. Most suitable for starters.
+* React Native CLI - Most suitable for experiences programmers
 
 
 
@@ -1039,4 +1039,5 @@ Here are some great resources to check out
  * https://reactjs.org/docs/hooks-custom.html
  * https://www.freecodecamp.org/news/react-testing-library-tutorial-javascript-example-code/
  * React Native Official Docs: https://reactnative.dev
+ * Programming with mosh - React Native for Beginners - https://www.youtube.com/watch?v=0-S5a0eXPoc
  * 
