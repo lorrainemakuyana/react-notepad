@@ -1002,6 +1002,17 @@ The action is dispatched to the store which will call the reducer for the event,
 
 
 # REACT NATIVE
+A framework for building native apps for iOS and Android using JavaScript. The app can be built in JavaScript and shared across platforms. There is a single codebase for both platforms.
+
+#### Advantages of React Native 
+* Single codebase
+* Increased developer productivity and faster time to market -> reloads are done very fast rather than in a native app where compilation is required before changes fire.
+
+#### React Native VS Flutter
+* React Native uses JavaScript (by Facebook), Flutter uses Dart (by Google)
+* React Native has a larger community  and quite more mature and stable, Flutter has a growing community and it not as mature as React Native. 
+* Explore both options to get more opportunities. 
+* 
 
 
 
@@ -1011,7 +1022,8 @@ The action is dispatched to the store which will call the reducer for the event,
 
 
 
-## Resources 
+
+# Resources 
 Here are some great resources to check out
  * Other modern/advanced React features/topics to learn:
  * Official React Context API - https://reactjs.org/docs/context.html
@@ -1026,3 +1038,5 @@ Here are some great resources to check out
  * https://medium.freecodecamp.org/summer-is-over-you-should-be-coding-heres-yet-another-list-of-exciting-ideas-to-build-a95d7704d36d
  * https://reactjs.org/docs/hooks-custom.html
  * https://www.freecodecamp.org/news/react-testing-library-tutorial-javascript-example-code/
+ * React Native Official Docs: https://reactnative.dev
+ * 
