@@ -1134,7 +1134,7 @@ Adds some padding and margin on the top to make sure that the content is not aff
 
 #### Text component
 
-An equivalent to HTML <code>p</code> tag that displays and styles text, can also handle touch events too. Can take in a number of parameters
+An equivalent to HTML `p` tag that displays and styles text, can also handle touch events too. Can take in a number of parameters
 
 #### Image component
 
@@ -1154,15 +1154,15 @@ You need to manually specify the dimensions of the image as width and height. Yo
 
 #### Touchable components
 
-    Examples are <code>TouchableHighlight</code>, <code>TouchableOpacity</code>, and <code>TouchableWithoutFeedback</code>. The use of either depend on the type of feedback you want to give to your user.
+    Examples are `TouchableHighlight`, `TouchableOpacity`, and `TouchableWithoutFeedback`. The use of either depend on the type of feedback you want to give to your user.
 
 #### Buttons
 
-    Buttons display differently on iOS and on Android, and the <code>Button</code> component renders the primary component on each platform as buttons are mapped to its native equivalent on each platform.
+    Buttons display differently on iOS and on Android, and the `Button` component renders the primary component on each platform as buttons are mapped to its native equivalent on each platform.
 
 #### Alert
 
-    Uses the same syntax as on the web e.g <code>alert('My application is running').</code> You can use the <code>Alert</code> component to customize your alert and the buttons it can show, for example
+    Uses the same syntax as on the web e.g `alert('My application is running')` You can use the `Alert` component to customize your alert and the buttons it can show, for example
 
 ```
     Alert.alert(
@@ -1186,7 +1186,7 @@ The first parameter is the title of the alert, the second is the alert message, 
 
 The first parameter is a title of the box, the second is a prompt message and the third parameter is a callback or buttons, a callback can take string of text which is the text the user puts in the box.
 
-### The StyleSheet API
+## The StyleSheet API
 
 This is used to define styles, but defined as plain regular javascript properties. Example usecase for this is below:
 
@@ -1201,7 +1201,7 @@ This is used to define styles, but defined as plain regular javascript propertie
   });
 ```
 
-    As can be seen, the container styles can be referenced as <code>styles.container</code> to any component to which the styles must be applied. The purpose of the create method is for validation of style properties, which is not applied if a plain JavaScript object is used for styling. Another benefit is that there are some optimizations that are done behind the scenes by React Native.
+    As can be seen, the container styles can be referenced as `styles.container` to any component to which the styles must be applied. The purpose of the create method is for validation of style properties, which is not applied if a plain JavaScript object is used for styling. Another benefit is that there are some optimizations that are done behind the scenes by React Native.
 
 \
 To give different styles to a component, you can use an array of objects with style properties, for example:
@@ -1214,9 +1214,9 @@ To give different styles to a component, you can use an array of objects with st
 
 The result is the combination of all of the styles in the objects, but the object on the right overrides the properties of the object on the left, which makes results more predictable.
 
-### The Platform Module
+## The Platform Module
 
-This module is used to apply Platform Specific code, for example to fix a reaking component on Android or iOS. The Platform module is imported from react-native and has a few properties that help tell what type of device a person is operating your app on. For example, to apply a style only on Android, especially in cases where the <SafeAreaView /> component is not working on Android, you can use this:
+This module is used to apply Platform Specific code, for example to fix a reaking component on Android or iOS. The Platform module is imported from react-native and has a few properties that help tell what type of device a person is operating your app on. For example, to apply a style only on Android, especially in cases where the `<SafeAreaView />` component is not working on Android, you can use this:
 
 ```
     import { Platform, StatusBar, StyleSheet } from 'react-native'
@@ -1230,9 +1230,64 @@ This module is used to apply Platform Specific code, for example to fix a reakin
     })
 ```
 
-With this example, the padding-top is set dynamically and applies only when on an Android device.
+With this example, the padding-top is set dynamically and applies only when on an Android device with the padding applied to the top equal to the height of the StatusBar on that device.
 
-### Layouts
+## Layouts
+
+### Dimensions
+Relates to the dimensions of components on the screen. 
+If, for example you have this component: 
+```
+    <View style={{backgroundColor: 'dodgerblue', width: 150, height: 70}}>
+        
+    </View>
+```
+The values of the width and height are called **Density-independent Pixels (dips)**. The actual size is **Physical Pixels = DIPs x Scale Factor of the device**. To make sure that consistency is kept the same across devices, it may be better to use width and height percentages. In situations where you want to fine tune the dimensions of the component, use the `Dimensions` API from `react-native`. For example: 
+```
+    import { Dimensions } from 'react-native'
+   
+    // Inside your component
+    Dimensions.get('screen')  // returns size of entire screen 
+    Dimensions.get('window') // returns dimensions of the visible application window
+```
+On iOS, both methods return the same value, they are equal, but they are different on Android where the window size is a bit smaller than the screen size. From the `get` method, you can get the fontScale, width, height, and the scale factor of the device.
+
+The problem with the Dimensions API is that it does not respond to orientation changes and the numbers are not updated. 
+
+### Dealing with orientation 
+Sometimes, you need a different orientation when you are using a device in portrait or landscape mode. Update your `app.json` to say `"orientation": "default"` to support both modes or set to landscape or portrait accordingly. To detect screen orientation, use the hooks library you can get from npm or yarn by `npm i @react-native-community/hooks` and then in your code, import the `useDimensions` hook. This hook gets the correct dimensions of the screen whether in portrait or landscape mode.
+
+```
+    import { useDimensions, useDeviceOrientation } from '@react-native-community/hooks'
+    
+    // Inside your component
+    const { landscape } = useDeviceOrientation();
+    <View
+        style={{
+          backgroundColor: "dodgerblue",
+          width: "100%",
+          height: landscape ? "100%" : "30%",
+        }}
+    ></View>
+```
+
+### Flexbox
+When `flex = 1`, the component grows to take the available free space. 
+By default, flex items are aligned vertically in a column in any componenent. To align horizontally set the `flexDirection: "row"` on the parent component. 
+
+#### Aligning items 
+To align items on the main axis, set the `justifyContent` property. This property aligns items on the main axis. If `flexDirection` is set to row, the main axis is the horizontal axis if set to column, the main axis is the vertical axis. 
+\
+Items are aligned on the secondary axis via the `alignItems` property, which is the reverse of the main axis within each line. To align one of the flex items differently from the others, set its style `alignSelf` property to the desired value. 
+    
+#### Wrapping Items
+If items overflow across the main axis, one or more items is shrunk to accommodate the overflow by default. To change this, enable wrapping by applying style `flexWrap: "wrap"`. This can mess up vertical alignment of your flex items. To set all the flex items together, set the `alignContent` property of the container, which only works if the `flexWrap` property is set to `wrap` and has no effect without wrapping. 
+
+#### flexBasis
+* `flexBasis` sets the size of an item along the primary axis. If the primary axis is the horizontal axis and the property is set to 100, that is equivalent to setting the width of the component to 100%. 
+    
+
+
 
 # Resources
 
@@ -1253,3 +1308,4 @@ Here are some great resources to check out
 - https://www.freecodecamp.org/news/react-testing-library-tutorial-javascript-example-code/
 - React Native Official Docs: https://reactnative.dev
 - Programming with Mosh - React Native for Beginners - https://www.youtube.com/watch?v=0-S5a0eXPoc
+- React Native Community Hooks Library NPM - https://www.npmjs.com/package/@react-native-community/hooks
