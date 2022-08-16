@@ -1008,7 +1008,7 @@ A framework for building native apps for iOS and Android using JavaScript. The a
 * Single codebase
 * Increased developer productivity and faster time to market -> reloads are done very fast rather than in a native app where compilation is required before changes fire.
 
-#### React Native VS Flutter
+### React Native VS Flutter
 * React Native uses JavaScript (by Facebook), Flutter uses Dart (by Google)
 * React Native has a larger community  and quite more mature and stable, Flutter has a growing community and it not as mature as React Native. 
 * Explore both options to get more opportunities. 
@@ -1017,7 +1017,8 @@ A framework for building native apps for iOS and Android using JavaScript. The a
 * Expo - set of tools and framework that make it fast and easy to build react native apps. Most suitable for starters.
 * React Native CLI - Most suitable for experiences programmers
 
-**In React Native, there are no HTML elemets, use the components that are provided by React Native, eg. <Text>** With these componenents, the application will be represented in an abstract, platform independent way and mapped to the appropriate component later when compiling.
+**In React Native, there are no HTML elemets, use the components that are provided by React Native, eg. <Text>** 
+With these componenents, the application will be represented in an abstract, platform independent way and mapped to the appropriate component later when compiling.
     
 ### Debugging in React Native
 * Debugging in your terminal - You can use <code>console.log()</code> statements in your code to debug your mobile application. The logs appear in your editor terminal where you are running the application from. In production, these statements have a negative impact on the performance of your application. To bring up the developer menu on a real device you have to shake it, if on an android virtual app press CMD+M on Mac and CTRL+M on Windows. On an iOS Simulator, use CMD+D and if that doesn't work, use ^+D then CMD+D. 
@@ -1027,7 +1028,7 @@ A framework for building native apps for iOS and Android using JavaScript. The a
 ### Pubishing your React Native App 
 You can publish your app on Expo Client and it will be visible to anyone in the world, rather than pushing your application through App Stores. This is only for Development. To publish on Expo, open a new terminal window and run <code> expo publish </code>. Your application will become available for anyone who has expo client installed on their phone to check out! 
 
-## Core components in React Native
+### Core components in React Native
 * Core components are cross-platform as are available APIs, but there are other components and APIs that are only for that particular platform. 
     
 #### View component
@@ -1041,11 +1042,14 @@ An equivalent to HTML <code>p</code> tag that displays and styles text, can also
     
 #### Image component 
 For rendering pictures and images
-
-#### Image component 
-    <code><Image source={require('./assets/icon.png')} /> </code>
+```
+    <Image source={require('./assets/icon.png')} /> 
+```
 The require function returns a number that is a reference to the image selected. The above method works with local images on your machine or in your project. To render images from the internet, use 
-<code><Image source={{uri: 'Link to image', width: ?, height: ?} /> </code>. You need to manually specify the dimensions of the image as width and height. You can apply a blur effect to an image via the prop <code>blurRadius.</code> You can also add an image that shows while the actual image loads using the <code>loadingIndicatorSource</code> which you can give a local image or a network image. Another useful prop is <code>resizeMode</code> which fires if the dimensions of the image are different from the dimensions specified. FYI there are other several props that you can tap into moments when images are being loaded, for example onLoad, onLoadStart, onPartialLoad etc. 
+```
+    <Image source={{uri: 'Link to image', width: ?, height: ?} />
+```
+You need to manually specify the dimensions of the image as width and height. You can apply a blur effect to an image via the prop ```blurRadius``` You can also add an image that shows while the actual image loads using the ```loadingIndicatorSource``` which you can give a local image or a network image. Another useful prop is ```resizeMode``` which fires if the dimensions of the image are different from the dimensions specified. FYI there are other several props that you can tap into moments when images are being loaded, for example ```onLoad```, ```onLoadStart```, ```onPartialLoad``` `etc. 
     
 #### Touchable components 
     Examples are <code>TouchableHighlight</code>, <code>TouchableOpacity</code>, and <code>TouchableWithoutFeedback</code>. The use of either depend on the type of feedback you want to give to your user. 
