@@ -1,6 +1,6 @@
 # React, React Redux & React Native
 
-#### Now that I have completed the Learn React Course
+#### React, it has been quite the journey...
 
 Throughout learning React, Redux and React Native, I documented all my notes in this Readme file so that anytime I need to refresh my mind on just the fundamentals to get me started on a new framework, or to make sure I keep these on my fingertips, I can always come back here nomatter what device I am using. I hope these notes can be helpful to anyone who picks them up, as they summarize key learning from all the courses I have watched and interacted with from YouTube videos/tutorials to paid courses to some tips I learned during my internships and project. 
 
