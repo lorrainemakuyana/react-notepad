@@ -728,7 +728,7 @@ If the methods are enough, you can use the <code>getByTestId(data-testid)</code>
 The <code>user-event</code> library for simulating user-browser interaction is also present in the library. 
 For example, for a click event, you can use the <code>userEvent.click()</code> method to assert whether or notthe button is working. You can also use other event methods like <code>dblClick()</code> for double clicking and element and <code>tyoe</code> for typing into a checkbox. 
 
-# REACT REDUX
+# REDUX
 
 ### What is Redux 
 A state management library that works with JavaScript Applications that can be used with React, Angular, Vue and possibly other frameworks e.g Vanilla JS. 
@@ -1017,7 +1017,102 @@ A framework for building native apps for iOS and Android using JavaScript. The a
 * Expo - set of tools and framework that make it fast and easy to build react native apps. Most suitable for starters.
 * React Native CLI - Most suitable for experiences programmers
 
+**In React Native, there are no HTML elemets, use the components that are provided by React Native, eg. <Text>** With these componenents, the application will be represented in an abstract, platform independent way and mapped to the appropriate component later when compiling.
+    
+### Debugging in React Native
+* Debugging in your terminal - You can use <code>console.log()</code> statements in your code to debug your mobile application. The logs appear in your editor terminal where you are running the application from. In production, these statements have a negative impact on the performance of your application. To bring up the developer menu on a real device you have to shake it, if on an android virtual app press CMD+M on Mac and CTRL+M on Windows. On an iOS Simulator, use CMD+D and if that doesn't work, use ^+D then CMD+D. 
+* Debugging on Chrome -> Open developer tools and choose 'Debug Remote JS' to start debugging in Chrome. However, ensure you close/stop remote debugging as soon as you finish debugging your app. 
+* Debugging in VS Code -> Download Extension 'React Native Tools' by Microsoft.
+    
+### Pubishing your React Native App 
+You can publish your app on Expo Client and it will be visible to anyone in the world, rather than pushing your application through App Stores. This is only for Development. To publish on Expo, open a new terminal window and run <code> expo publish </code>. Your application will become available for anyone who has expo client installed on their phone to check out! 
 
+## Core components in React Native
+* Core components are cross-platform as are available APIs, but there are other components and APIs that are only for that particular platform. 
+    
+#### View component
+Basic building block of UI, has container capability and supports layouts.
+    
+#### SafeAreaView 
+Adds some padding and margin on the top to make sure that the content is not affected by the notch in some phones and rendered in the safe area.
+
+#### Text component 
+An equivalent to HTML <code>p</code> tag that displays and styles text, can also handle touch events too. Can take in a number of parameters
+    
+#### Image component 
+For rendering pictures and images
+
+#### Image component 
+    <code><Image source={require('./assets/icon.png')} /> </code>
+The require function returns a number that is a reference to the image selected. The above method works with local images on your machine or in your project. To render images from the internet, use 
+<code><Image source={{uri: 'Link to image', width: ?, height: ?} /> </code>. You need to manually specify the dimensions of the image as width and height. You can apply a blur effect to an image via the prop <code>blurRadius.</code> You can also add an image that shows while the actual image loads using the <code>loadingIndicatorSource</code> which you can give a local image or a network image. Another useful prop is <code>resizeMode</code> which fires if the dimensions of the image are different from the dimensions specified. FYI there are other several props that you can tap into moments when images are being loaded, for example onLoad, onLoadStart, onPartialLoad etc. 
+    
+#### Touchable components 
+    Examples are <code>TouchableHighlight</code>, <code>TouchableOpacity</code>, and <code>TouchableWithoutFeedback</code>. The use of either depend on the type of feedback you want to give to your user. 
+
+#### Buttons
+    Buttons display differently on iOS and on Android, and the <code>Button</code> component renders the primary component on each platform as buttons are mapped to its native equivalent on each platform.
+    
+    
+ #### Alert
+    Uses the same syntax as on the web e.g <code>alert('My application is running').</code> You can use the <code>Alert</code> component to customize your alert and the buttons it can show, for example
+```
+    Alert.alert(
+        'My alert', 
+        "My application is running", 
+        [{text: 'Yes'}, {text: 'No'}]
+    )
+```
+The first parameter is the title of the alert, the second is the alert message, the third is the array of buttons that come with the alert. You can add the onPress event of each button to execute the required code if either button is pressed. 
+    
+    The alert component can also be used to prompt a user for information, e.g 
+```
+    Alert.prompt(
+        'My prompt', 
+        'Enter your information', 
+        text => console.log(text), 
+    )
+```
+The first parameter is a title of the box, the second is a prompt message and the third parameter is a callback or buttons, a callback can take string of text which is the text the user puts in the box. 
+    
+### The StyleSheet API
+This is used to define styles, but defined as plain regular javascript properties. Example usecase for this is below:
+```
+  const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        justifyContent: "center",
+        alignItems: "center",
+      },
+  });
+``` 
+    As can be seen, the container styles can be referenced as <code>styles.container</code> to any component to which the styles must be applied. The purpose of the create method is for validation of style properties, which is not applied if a plain JavaScript object is used for styling. Another benefit is that there are some optimizations that are done behind the scenes by React Native. 
+\
+To give different styles to a component, you can use an array of objects with style properties, for example: 
+```
+    <SafeAreaView style={[styles.container, someOtherProperty]}> 
+        {Some components here} 
+    </SafeAreaView>
+```
+The result is the combination of all of the styles in the objects, but the object on the right overrides the properties of the object on the left, which makes results more predictable. 
+
+### The Platform Module
+This module is used to apply Platform Specific code, for example to fix a reaking component on Android or iOS. The Platform module is imported from react-native and has a few properties that help tell what type of device a person is operating your app on. For example, to apply a style only on Android, especially in cases where the <SafeAreaView /> component is not working on Android, you can use this:
+```
+    import { Platform, StatusBar, StyleSheet } from 'react-native'
+    
+    // Component goes here
+    
+    const styles = StyleSheet.create({
+        container: {
+            paddingTop; Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        }
+    })
+```
+With this example, the padding-top is set dynamically and applies only when on an Android device. 
+ 
+### Layouts
 
 
 
@@ -1039,5 +1134,4 @@ Here are some great resources to check out
  * https://reactjs.org/docs/hooks-custom.html
  * https://www.freecodecamp.org/news/react-testing-library-tutorial-javascript-example-code/
  * React Native Official Docs: https://reactnative.dev
- * Programming with mosh - React Native for Beginners - https://www.youtube.com/watch?v=0-S5a0eXPoc
- * 
+ * Programming with Mosh - React Native for Beginners - https://www.youtube.com/watch?v=0-S5a0eXPoc
