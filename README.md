@@ -2,16 +2,9 @@
 
 #### Now that I have completed the Learn React Course
 
-Hello, and I am super excited to have completed my learn React course. From learning about props, components, hooks, lifecycle methods and more, including building a to-do application and a meme generator in React, I have some information about React and I am excited to start using the framework. Below are some of the concepts I learned and a link to the projects I created during the course. I was updating these notes throughout my learning, hoping it would be a learning resource for some as well. In the projects folder of the code in this course, you will find all the project code too.
+Throughout learning React, Redux and React Native, I documented all my notes in this Readme file so that anytime I need to refresh my mind on just the fundamentals to get me started on a new framework, or to make sure I keep these on my fingertips, I can always come back here nomatter what device I am using. I hope these notes can be helpful to anyone who picks them up, as they summarize key learning from all the courses I have watched and interacted with from YouTube videos/tutorials to paid courses to some tips I learned during my internships and project. 
 
-#### This repo is constantly being updated with updated and new information that I come across as I continue working with and learning React.
-
-#### Links to project repositories
-
-- To do Application: https://github.com/lorrainemakuyana/todo-app-react
-- Meme Generator: https://github.com/lorrainemakuyana/react-meme-generator
-
-Here's the link to the course on Scrimba: https://scrimba.com/learn/learnreact
+#### This repo is constantly being updated with new information as languages and frameworks evolve. If you see any outdated information here, please raise an issue in the issues tab.
 
 ## Functional Components
 
@@ -20,21 +13,21 @@ For example:
 Say there is a file index.js with the following code:
 
 ```
-    ReactDOM.render(
-        <div>
-            <h1>Hello World!</h1>
-            <p>Three places of interest in Zimbabwe are:</p>
-            <ul>
-                <li>Hwange National Park</li>
-                <li>Great Zimbabwe</li>
-                <li>Victoria Falls</li>
-            </ul>
-            <footer>
-                <!-- All links, contact information and addresses go here -->
-            </footer>
-        </div>,
-        document.getElementById("root)
-    )
+ReactDOM.render(
+    <div>
+        <h1>Hello World!</h1>
+        <p>Three places of interest in Zimbabwe are:</p>
+        <ul>
+            <li>Hwange National Park</li>
+            <li>Great Zimbabwe</li>
+            <li>Victoria Falls</li>
+        </ul>
+        <footer>
+            <!-- All links, contact information and addresses go here -->
+        </footer>
+    </div>,
+    document.getElementById("root)
+)
 ```
 
 This is acceptable, for any file as long as all the HTML elements are wrapped within one parent element. However, imagine
@@ -42,31 +35,31 @@ a case where you want to render a full webpage. In this case, it is better to ha
 still, different smaller components that will be imported using that file. That way, the webpage will end up looking like a tree object in which components import each other, but the very basic element in all of them are the HTML elements.
 
 ```
-    // In App.js
+// In App.js
 
-    const App = () =>
-        <div>
-            <h1>Hello World!</h1>
-            <p>Three places of interest in Zimbabwe are:</p>
-            <ul>
-                <li>Hwange National Park</li>
-                <li>Great Zimbabwe</li>
-                <li>Victoria Falls</li>
-            </ul>
-            <footer>
-                <!-- All links, contact information and addresses go here -->
-            </footer>
-        </div>
+const App = () =>
+    <div>
+        <h1>Hello World!</h1>
+        <p>Three places of interest in Zimbabwe are:</p>
+        <ul>
+            <li>Hwange National Park</li>
+            <li>Great Zimbabwe</li>
+            <li>Victoria Falls</li>
+        </ul>
+        <footer>
+            <!-- All links, contact information and addresses go here -->
+        </footer>
+    </div>
 
-    export default App
+export default App
 
-    // In index.js
-    import App from "App"
+// In index.js
+import App from "App"
 
-    ReactDOM.render(
-        <App />,
-        document.getElementById("root)
-     );
+ReactDOM.render(
+    <App />,
+    document.getElementById("root)
+ );
 ```
 
 ### Mapping Components
@@ -74,27 +67,27 @@ still, different smaller components that will be imported using that file. That 
 The data that is passed in is usually put in a different file, e.g. a js file or a json file or in an API somewhere. If data is in an array, you can take advantage of advanced array methods such as map, filter, some etc. to help in constructing components. For example:
 
 ```
-    // in the Joke.js file
-    const Joke = (props) =>
-    <div>
-        <h3>Question: {props.question} </h3>
-        <h3>Answer: {props.punchLine} </h3>
-        <hr />
-    </div>
+// in the Joke.js file
+const Joke = (props) =>
+<div>
+    <h3>Question: {props.question} </h3>
+    <h3>Answer: {props.punchLine} </h3>
+    <hr />
+</div>
 
-    // In the App.js file
-    import jokesData from "./jokesData"
+// In the App.js file
+import jokesData from "./jokesData"
 
-    function App() {
-        const jokeComponents = jokesData.map((data) => {
-            return <Joke key={data.id} question={data.question} punchLine={data.punchLine} />
-        })
-        return (
-            <div>
-                {jokeComponents}
-            </div>
-        )
-    }
+function App() {
+    const jokeComponents = jokesData.map((data) => {
+        return <Joke key={data.id} question={data.question} punchLine={data.punchLine} />
+    })
+    return (
+        <div>
+            {jokeComponents}
+        </div>
+    )
+}
 export default App
 ```
 
@@ -106,41 +99,10 @@ An external stylesheet can be used with styles, and referenced from the index.ht
 However, styles within different JavaScript components are also applied, but usually as JavaScript objects. Here is an example
 
 ```
-    // This is a Header component
-    // Import rule on top
+// This is a Header component
+// Import rule on top
 
-    let styles = {
-        .navbar {
-            height: 100px;
-            background-color: #333;
-            color: whitesmoke;
-            margin-bottom: 15px;
-            text-align: center;
-            font-size: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-
-    const Header = () =>
-        <header style={ ${styles} }>
-            Hello World!
-        </header>
-
-```
-
-The same can be done by having the styles in an external CSS file, say index.css referenced from the index.html file, with the style rule for the navbar class. This would work if the Header is assigned a className property. For example:
-
-```
-    // This is the Header component
-    // Import rules here
-    const Header = () =>
-        <header className="navbar">
-            Hello World!
-        </header>
-
-    // In an external stylesheet
+let styles = {
     .navbar {
         height: 100px;
         background-color: #333;
@@ -152,6 +114,37 @@ The same can be done by having the styles in an external CSS file, say index.css
         justify-content: center;
         align-items: center;
     }
+}
+
+const Header = () =>
+    <header style={ ${styles} }>
+        Hello World!
+    </header>
+
+```
+
+The same can be done by having the styles in an external CSS file, say index.css referenced from the index.html file, with the style rule for the navbar class. This would work if the Header is assigned a className property. For example:
+
+```
+// This is the Header component
+// Import rules here
+const Header = () =>
+    <header className="navbar">
+        Hello World!
+    </header>
+
+// In an external stylesheet
+.navbar {
+    height: 100px;
+    background-color: #333;
+    color: whitesmoke;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 ```
 
 ## Props
@@ -160,27 +153,27 @@ Props help modify the way that components work. Props cannot be changed by the r
 Props are passed in as function parameters that can then be accessed by object dot operations. This reduces the need to create different instances of the same component with different properties. For example, for a contact list with properties name, image, phone and email per user, the props object helps to create different user properties for each contact given the properties are passed in as attributes to the Contact Component. Here's how:
 
 ```
-    // In App.js
-    // import rules here
+// In App.js
+// import rules here
 
-    const App = () =>
-        <div className="contacts">
-            <ContactCard
-                name="Mr. Whiskerson"
-                imgUrl="http://placekitten.com/300/200"
-                phone="(212) 555-1234"
-                email="mr.whiskaz@catnap.meow"
-            />
-        </div>
+const App = () =>
+    <div className="contacts">
+        <ContactCard
+            name="Mr. Whiskerson"
+            imgUrl="http://placekitten.com/300/200"
+            phone="(212) 555-1234"
+            email="mr.whiskaz@catnap.meow"
+        />
+    </div>
 
-    // In ContactCard.js
-    const ContactCard = (props) =>
-        <div className="contact-card">
-            <img src={props.imgUrl} alt=""/>
-            <h3>{props.name}</h3>
-            <p>Phone: {props.phone}</p>
-            <p>Email: {props.email}</p>
-        </div>
+// In ContactCard.js
+const ContactCard = (props) =>
+    <div className="contact-card">
+        <img src={props.imgUrl} alt=""/>
+        <h3>{props.name}</h3>
+        <p>Phone: {props.phone}</p>
+        <p>Email: {props.email}</p>
+    </div>
 
 ```
 
@@ -189,24 +182,24 @@ Here, the props, passed in as a function parameter is actually an object contain
 The same can be implemented using objects only, without using attributed in the App.js function. This is how:
 
 ```
-    // In App.js
-    // import rules here
+// In App.js
+// import rules here
 
-    const App = () =>
-        <div className="contacts">
-            <ContactCard
-            contact={{name: "Mr. Whiskerson", imgUrl: "http://placekitten.com/300/200", phone: "(212) 555-1234", email: "mr.whiskaz@catnap.meow"}}
-            />
-        </div>
+const App = () =>
+    <div className="contacts">
+        <ContactCard
+        contact={{name: "Mr. Whiskerson", imgUrl: "http://placekitten.com/300/200", phone: "(212) 555-1234", email: "mr.whiskaz@catnap.meow"}}
+        />
+    </div>
 
-    // In ContactCard.js
-    const ContactCard = (props) =>
-        <div className="contact-card">
-            <img src={props.contact.imgUrl}/>
-            <h3>{props.contact.name}</h3>
-            <p>Phone: {props.contact.phone}</p>
-            <p>Email: {props.contact.email}</p>
-        </div>
+// In ContactCard.js
+const ContactCard = (props) =>
+    <div className="contact-card">
+        <img src={props.contact.imgUrl}/>
+        <h3>{props.contact.name}</h3>
+        <p>Phone: {props.contact.phone}</p>
+        <p>Email: {props.contact.email}</p>
+    </div>
 ```
 
 The latter is best suited for when the values of the objects are acquired from a data file e.g. a JSON file that can be accessed using JavaScript.
@@ -218,29 +211,29 @@ If there are no props, or if the props is empty, then the props is null and noth
 ### Converting between functional and class components
 
 ```
-    function App(props) {
+function App(props) {
+    return (
+        <div>
+            <h1>{props.item}</h1>
+        </div>
+    )
+}
+
+// The above is the same as:
+class App extends React.Component {
+    anotherMethod() {
+        // Code=block
+    }
+
+    render() {
+        const a = this.anothermethod();
         return (
             <div>
-                <h1>{props.item}</h1>
+                <h1>{this.props.item}</h1>
             </div>
         )
     }
-
-    // The above is the same as:
-    class App extends React.Component {
-        anotherMethod() {
-            // Code=block
-        }
-
-        render() {
-            const a = this.anothermethod();
-            return (
-                <div>
-                    <h1>{this.props.item}</h1>
-                </div>
-            )
-        }
-    }
+}
 ```
 
 ## State
@@ -277,35 +270,35 @@ In the above example, the state "answer" has been passed down to the ChildCompon
 Changing state implies changing the original state object in the constructor. However, this is not usually done because it changes the global variable. Hence, the setState method is used for the function. The method to change the state is bonded to the class component.
 
 ```
-    import React from "react"
+import React from "react"
 
-    class App extends React.Component {
-        constructor() {
-            super()
-            this.state = {
-                count: 0
-            }
-            this.handleClick = this.handleClick.bind(this) // binding the method
+class App extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            count: 0
         }
-
-        handleClick() {
-            this.setState((prevState) => {
-                return {
-                    count: prevState.count + 1;
-                }
-            })
-        }
-
-        render() {
-            return (
-                <div>
-                    <h1>{this.state.count}</h1>  // receives and re-renders every time that the count changes.
-                    <button onClick={this.handleClick}>Change!</button>
-                    <ChildComponent count={this.state.count}> //reflects the new value of count as it changes.
-                </div>
-            )
-        }
+        this.handleClick = this.handleClick.bind(this) // binding the method
     }
+
+    handleClick() {
+        this.setState((prevState) => {
+            return {
+                count: prevState.count + 1;
+            }
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>{this.state.count}</h1>  // receives and re-renders every time that the count changes.
+                <button onClick={this.handleClick}>Change!</button>
+                <ChildComponent count={this.state.count}> //reflects the new value of count as it changes.
+            </div>
+        )
+    }
+}
 ```
 
 ## Handling events
@@ -779,13 +772,13 @@ To run the tests, use <code>npm run test</code> and the <code>document.body</cod
 
 Most React test cases should use methods for finding elements, and the testting library provides several of these by specific attributes:
 
-- <code>getByText(textContent)</code>
-- <code>getByRole(role)</code>
-- <code>getByLabelText(label)</code>
-- <code>getPlaceholderText(placeholder)</code>
-- <code>getByAltText(alt)</code>
-- <code>getByDisplayValue(value)</code>
-- <code>getByTitle(title)</code>
+- `getByText(textContent)`
+- `getByRole(role)`
+- `getByLabelText(label)`
+- `getPlaceholderText(placeholder)`
+- `getByAltText(alt)`
+- `getByDisplayValue(value)`
+- `getByTitle(title)`
 
 If the methods are enough, you can use the <code>getByTestId(data-testid)</code>.
 
@@ -825,7 +818,7 @@ Redux is useful for keeping different parts of the UI in sync, to update data ac
 
 **Redux uses functional programming**
 Functional programming is a programming paradigm that decomposes a problem into small and reusable pieces(functions) that take inputs and return outputs/results without mutating or changing data. The functions can then be composed to build more complex functions.
-\
+
 \
 **Benefits include**
 
@@ -840,28 +833,27 @@ Higher order functions are functions that take a function as an argument or retu
 A utility library for JS with a section that helps with functional programming. Example of when to use is below.
 
 ```
-    const transform = wrapInDiv(toLowerCase(trim(input)))
+const transform = wrapInDiv(toLowerCase(trim(input)))
 ```
 
-\
 The goal is to get rid of all the parenthesis in the above statement, and to do that, here are the steps:
 
 ```
-    npm install lodash
+npm install lodash
 
-    import { compose, pipe } from 'lodash/fp'
+import { compose, pipe } from 'lodash/fp'
 
-    const trim = str => str.trim()
+const trim = str => str.trim()
 
-    const toLowerCase = str => str.toLowerCase()
+const toLowerCase = str => str.toLowerCase()
 
-    const transform = pipe(trim, toLowerCase, wrapInDiv)
+const transform = pipe(trim, toLowerCase, wrapInDiv)
 
-    transform(input)
+transform(input)
 
-    /* Order matters, so use the pipe function to list the functions in the order
-    you want to apply them. The compose function is a higher order function that
-    takes 3 arguments and returns a new function with the composition of all the functions. */
+/* Order matters, so use the pipe function to list the functions in the order
+you want to apply them. The compose function is a higher order function that
+takes 3 arguments and returns a new function with the composition of all the functions. */
 ```
 
 #### Curing
@@ -871,43 +863,43 @@ It is a functional programming technique
 Example
 
 ```
-    const input = "   Learning Redux    "
+const input = "   Learning Redux    "
 
-    const wrap = (type, str) => {
-        return `<${type}>${str}</${type}>`
-    }
+const wrap = (type, str) => {
+    return `<${type}>${str}</${type}>`
+}
 
-    const trim = str => str.trim()
+const trim = str => str.trim()
 
-    const toLowerCase = str => str.toLowerCase()
+const toLowerCase = str => str.toLowerCase()
 
-    const transform = pipe(trim, toLowerCase, wrap("div"))
-    console.log(input.transform()) // This returns an error or undefined
+const transform = pipe(trim, toLowerCase, wrap("div"))
+console.log(input.transform()) // This returns an error or undefined
 
-    // In piping, the output of the first function is the input of the
-    // next element. Every parameter to the function has to be a function.
+// In piping, the output of the first function is the input of the
+// next element. Every parameter to the function has to be a function.
 ```
 
 In currying, instead of separating parameters using commas, we use parenthesis, e.g <code>add(1)(2)</code>, but the function has a single parameter that returns another function with another parameter.
 
 ```
-    const add = a => b => a + b
+const add = a => b => a + b
 ```
 
 In the <code>wrap</code> function above, the wrap function can be written as a function just like the add function.
 
 ```
-    const trim = str => str.trim()
+const trim = str => str.trim()
 
-    const toLowerCase = str => str.toLowerCase()
+const toLowerCase = str => str.toLowerCase()
 
-    const wrap = type => str => `<${type}>${str}</${type}>`
+const wrap = type => str => `<${type}>${str}</${type}>`
 
-    const transform = pipe(trim, toLowerCase, wrap("div))
+const transform = pipe(trim, toLowerCase, wrap("div))
 
-    // This returns a div with the contents of str trimmed and
-    // converted to lower case.
-    // The parameter wrap can be changed to any HTML element to render different elements on the page.
+// This returns a div with the contents of str trimmed and
+// converted to lower case.
+// The parameter wrap can be changed to any HTML element to render different elements on the page.
 ```
 
 #### Pure Functions
@@ -922,11 +914,11 @@ A function is pure if it gives the same result for the same arguments/parameters
 Example of a pure function
 
 ```
-    function add(a, b) {
-        return a + b
-    }
+function add(a, b) {
+    return a + b
+}
 
-    // This function always returns the same number if given the same a and b values, hence it is pure.
+// This function always returns the same number if given the same a and b values, hence it is pure.
 ```
 
 **Benefits of a pure function**
@@ -954,51 +946,51 @@ _Non-benefits_
 **Immutability in JavaScript Objects**
 
 ```
-    const person = {
-        name: "Lorraine",
-        address: {
-            city: "New Jersey"
-        }
+const person = {
+    name: "Lorraine",
+    address: {
+        city: "New Jersey"
     }
+}
 
-    // Update person
-    const updatedPerson = Object.assign({}, person, {name: "Bob", age: 23})
+// Update person
+const updatedPerson = Object.assign({}, person, {name: "Bob", age: 23})
 
-    // Better way - use spead operator - more concise
-    const updatedPerson2 = { ...person, name: "Bob"}
+// Better way - use spead operator - more concise
+const updatedPerson2 = { ...person, name: "Bob"}
 
-    // Both methods do a shallow copy of the original object, hence inside objects are the same
-    // Changes by reference change the original
-    // Do a deep copy instead
+// Both methods do a shallow copy of the original object, hence inside objects are the same
+// Changes by reference change the original
+// Do a deep copy instead
 
-    const updatedPerson3 = {
-        ...person,
-        address: {
-            ...person.address,
-            city: "New York"
-        }
+const updatedPerson3 = {
+    ...person,
+    address: {
+        ...person.address,
+        city: "New York"
     }
+}
 ```
 
 **Updating Arrays**
 
 ```
-    const numbers = [1, 2, 3]
+const numbers = [1, 2, 3]
 
-    // TO ADD
-    // To add 5 to either beginning or end
-    const addedToStart = [5, ...numbers]
+// TO ADD
+// To add 5 to either beginning or end
+const addedToStart = [5, ...numbers]
 
-    const addedToEnd = [...numbers, 5]
+const addedToEnd = [...numbers, 5]
 
-    // To add at a particular index 'index'
-    const added = [...numbers.slice(0, index), 5, ...numbers.slice(index,)]
+// To add at a particular index 'index'
+const added = [...numbers.slice(0, index), 5, ...numbers.slice(index,)]
 
-    // TO REMOVE
-    const removed = numbers.filter(n => n !== 2)
+// TO REMOVE
+const removed = numbers.filter(n => n !== 2)
 
-    // TO UPDATE, e.g to update 2
-    const updated = numbers.map(n => n === 2 ? 20 : n)
+// TO UPDATE, e.g to update 2
+const updated = numbers.map(n => n === 2 ? 20 : n)
 ```
 
 ### Enforcing immutability in JavaScript
@@ -1009,39 +1001,39 @@ Use immutable libraries to enforce immutability in JavaScript
 To install <code>npm install immutable</code> and create your file this way:
 
 ```
-    import { Map } from 'immutable'
+import { Map } from 'immutable'
 
-    let book = Map({ title: "Nancy Drew" })
+let book = Map({ title: "Nancy Drew" })
 
-    function publish(book) {
-        book.set("isPublished", true)
-    }
+function publish(book) {
+    book.set("isPublished", true)
+}
 
-    function getName(book) {
-        return book.get('title')
-    }
+function getName(book) {
+    return book.get('title')
+}
 
-    publish(book)
-    console.log(book)
+publish(book)
+console.log(book)
 ```
 
 **Immer JS**
 To install <code>npm install immer</code> and create your file this way:
 
 ```
-    import { produce } from 'immer'
+import { produce } from 'immer'
 
-    let book = Map({ title: "Nancy Drew" })
+let book = Map({ title: "Nancy Drew" })
 
-    function publish(book) {
-        return produce(book, draftBook => {
-            draftBook.isPublished = true
-        })
-    }
+function publish(book) {
+    return produce(book, draftBook => {
+        draftBook.isPublished = true
+    })
+}
 
-    let updated = publish(book)
-    console.log(book)
-    console.log(updated)
+let updated = publish(book)
+console.log(book)
+console.log(updated)
 ```
 
 ### Redux
@@ -1069,18 +1061,18 @@ The action is dispatched to the store which will call the reducer for the event,
 - When navigating away from pages, unsubscribe the UI components that are not part of the new rendered pages
 
 ```
-    const unsubscribe = store.subscribe(() => {
-    console.log("Store changed!", store.getState())
-    })
+const unsubscribe = store.subscribe(() => {
+console.log("Store changed!", store.getState())
+})
 
-    store.dispatch({
-        type: "bugAdded",
-        payload: {
-            description: "Bug1"
-        }
-    })
+store.dispatch({
+    type: "bugAdded",
+    payload: {
+        description: "Bug1"
+    }
+})
 
-    unsubscribe()
+unsubscribe()
 ```
 
 - The dispatch function gets the new state after the action from the reducer and notifies the subscribers of the changes made to the state.
@@ -1141,47 +1133,47 @@ An equivalent to HTML `p` tag that displays and styles text, can also handle tou
 For rendering pictures and images
 
 ```
-    <Image source={require('./assets/icon.png')} />
+<Image source={require('./assets/icon.png')} />
 ```
 
 The require function returns a number that is a reference to the image selected. The above method works with local images on your machine or in your project. To render images from the internet, use
 
 ```
-    <Image source={{uri: 'Link to image', width: ?, height: ?} />
+<Image source={{uri: 'Link to image', width: ?, height: ?} />
 ```
 
 You need to manually specify the dimensions of the image as width and height. You can apply a blur effect to an image via the prop `blurRadius` You can also add an image that shows while the actual image loads using the `loadingIndicatorSource` which you can give a local image or a network image. Another useful prop is `resizeMode` which fires if the dimensions of the image are different from the dimensions specified. FYI there are other several props that you can tap into moments when images are being loaded, for example `onLoad`, `onLoadStart`, `onPartialLoad` `etc.
 
 #### Touchable components
 
-    Examples are `TouchableHighlight`, `TouchableOpacity`, and `TouchableWithoutFeedback`. The use of either depend on the type of feedback you want to give to your user.
+Examples are `TouchableHighlight`, `TouchableOpacity`, and `TouchableWithoutFeedback`. The use of either depend on the type of feedback you want to give to your user.
 
 #### Buttons
 
-    Buttons display differently on iOS and on Android, and the `Button` component renders the primary component on each platform as buttons are mapped to its native equivalent on each platform.
+Buttons display differently on iOS and on Android, and the `Button` component renders the primary component on each platform as buttons are mapped to its native equivalent on each platform.
 
 #### Alert
 
-    Uses the same syntax as on the web e.g `alert('My application is running')` You can use the `Alert` component to customize your alert and the buttons it can show, for example
+Uses the same syntax as on the web e.g `alert('My application is running')` You can use the `Alert` component to customize your alert and the buttons it can show, for example
 
 ```
-    Alert.alert(
-        'My alert',
-        "My application is running",
-        [{text: 'Yes'}, {text: 'No'}]
-    )
+Alert.alert(
+    'My alert',
+    "My application is running",
+    [{text: 'Yes'}, {text: 'No'}]
+)
 ```
 
 The first parameter is the title of the alert, the second is the alert message, the third is the array of buttons that come with the alert. You can add the onPress event of each button to execute the required code if either button is pressed.
 
-    The alert component can also be used to prompt a user for information, e.g
+The alert component can also be used to prompt a user for information, e.g
 
 ```
-    Alert.prompt(
-        'My prompt',
-        'Enter your information',
-        text => console.log(text),
-    )
+Alert.prompt(
+    'My prompt',
+    'Enter your information',
+    text => console.log(text),
+)
 ```
 
 The first parameter is a title of the box, the second is a prompt message and the third parameter is a callback or buttons, a callback can take string of text which is the text the user puts in the box.
@@ -1191,14 +1183,14 @@ The first parameter is a title of the box, the second is a prompt message and th
 This is used to define styles, but defined as plain regular javascript properties. Example usecase for this is below:
 
 ```
-  const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        justifyContent: "center",
-        alignItems: "center",
-      },
-  });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 ```
 
     As can be seen, the container styles can be referenced as `styles.container` to any component to which the styles must be applied. The purpose of the create method is for validation of style properties, which is not applied if a plain JavaScript object is used for styling. Another benefit is that there are some optimizations that are done behind the scenes by React Native.
@@ -1207,9 +1199,9 @@ This is used to define styles, but defined as plain regular javascript propertie
 To give different styles to a component, you can use an array of objects with style properties, for example:
 
 ```
-    <SafeAreaView style={[styles.container, someOtherProperty]}>
-        {Some components here}
-    </SafeAreaView>
+<SafeAreaView style={[styles.container, someOtherProperty]}>
+    {Some components here}
+</SafeAreaView>
 ```
 
 The result is the combination of all of the styles in the objects, but the object on the right overrides the properties of the object on the left, which makes results more predictable.
@@ -1219,15 +1211,15 @@ The result is the combination of all of the styles in the objects, but the objec
 This module is used to apply Platform Specific code, for example to fix a reaking component on Android or iOS. The Platform module is imported from react-native and has a few properties that help tell what type of device a person is operating your app on. For example, to apply a style only on Android, especially in cases where the `<SafeAreaView />` component is not working on Android, you can use this:
 
 ```
-    import { Platform, StatusBar, StyleSheet } from 'react-native'
+import { Platform, StatusBar, StyleSheet } from 'react-native'
 
-    // Component goes here
+// Component goes here
 
-    const styles = StyleSheet.create({
-        container: {
-            paddingTop; Platform.OS === "android" ? StatusBar.currentHeight : 0,
-        }
-    })
+const styles = StyleSheet.create({
+    container: {
+        paddingTop; Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    }
+})
 ```
 
 With this example, the padding-top is set dynamically and applies only when on an Android device with the padding applied to the top equal to the height of the StatusBar on that device.
@@ -1238,17 +1230,17 @@ With this example, the padding-top is set dynamically and applies only when on a
 Relates to the dimensions of components on the screen. 
 If, for example you have this component: 
 ```
-    <View style={{backgroundColor: 'dodgerblue', width: 150, height: 70}}>
-        
-    </View>
+<View style={{backgroundColor: 'dodgerblue', width: 150, height: 70}}>
+
+</View>
 ```
 The values of the width and height are called **Density-independent Pixels (dips)**. The actual size is **Physical Pixels = DIPs x Scale Factor of the device**. To make sure that consistency is kept the same across devices, it may be better to use width and height percentages. In situations where you want to fine tune the dimensions of the component, use the `Dimensions` API from `react-native`. For example: 
 ```
-    import { Dimensions } from 'react-native'
-   
-    // Inside your component
-    Dimensions.get('screen')  // returns size of entire screen 
-    Dimensions.get('window') // returns dimensions of the visible application window
+import { Dimensions } from 'react-native'
+
+// Inside your component
+Dimensions.get('screen')  // returns size of entire screen 
+Dimensions.get('window') // returns dimensions of the visible application window
 ```
 On iOS, both methods return the same value, they are equal, but they are different on Android where the window size is a bit smaller than the screen size. From the `get` method, you can get the fontScale, width, height, and the scale factor of the device.
 
@@ -1258,17 +1250,17 @@ The problem with the Dimensions API is that it does not respond to orientation c
 Sometimes, you need a different orientation when you are using a device in portrait or landscape mode. Update your `app.json` to say `"orientation": "default"` to support both modes or set to landscape or portrait accordingly. To detect screen orientation, use the hooks library you can get from npm or yarn by `npm i @react-native-community/hooks` and then in your code, import the `useDimensions` hook. This hook gets the correct dimensions of the screen whether in portrait or landscape mode.
 
 ```
-    import { useDimensions, useDeviceOrientation } from '@react-native-community/hooks'
-    
-    // Inside your component
-    const { landscape } = useDeviceOrientation();
-    <View
-        style={{
-          backgroundColor: "dodgerblue",
-          width: "100%",
-          height: landscape ? "100%" : "30%",
-        }}
-    ></View>
+import { useDimensions, useDeviceOrientation } from '@react-native-community/hooks'
+
+// Inside your component
+const { landscape } = useDeviceOrientation();
+<View
+    style={{
+      backgroundColor: "dodgerblue",
+      width: "100%",
+      height: landscape ? "100%" : "30%",
+    }}
+></View>
 ```
 
 ### Flexbox
@@ -1285,8 +1277,17 @@ If items overflow across the main axis, one or more items is shrunk to accommoda
 
 #### flexBasis
 * `flexBasis` sets the size of an item along the primary axis. If the primary axis is the horizontal axis and the property is set to 100, that is equivalent to setting the width of the component to 100%. 
-    
 
+#### flexGrow 
+If set to 1, the flex item takes up all the available results. `flexGrow` is almost the same as setting `flex` to 1.
+
+#### flexShrink
+If applied to a flex item, it tells that item that it can get shrunk for other items to fit on the screen if there is an overflow. Setting property `flex` to a negative value is equivalent to setting the item's `flexShrink` property. 
+
+## Positioning
+
+#### Absolute & relative positioning 
+All components by default have their position set to relative, hence they can be moved relative to their current position without changing the position of the other items. If an element has been given `absolute` positioning, the item is placed relative to its parent and the layout around it will be affected. The other items' positions change as well depending on the position on the container. 
 
 
 # Resources
